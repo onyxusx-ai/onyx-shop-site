@@ -4,24 +4,588 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONYX SHOP — Streetwear Select Store</title>
-  <meta name="description" content="ONYX SHOP — select store одежды, обуви и аксессуаров." />
-  <link rel="stylesheet" href="style.css" />
+  <title>ONYX SHOP</title>
+  <meta name="description" content="ONYX SHOP — streetwear select store" />
+  <style>
+    :root{
+      --bg:#070707;
+      --bg2:#0f0f10;
+      --panel:rgba(255,255,255,.05);
+      --line:rgba(255,255,255,.08);
+      --text:#f5f5f5;
+      --muted:#a0a0a8;
+      --accent:#e12a00;
+      --accent2:#ff4a16;
+      --radius:22px;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --container:1200px;
+    }
+
+```
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 15%, rgba(225,42,0,.14), transparent 22%),
+    radial-gradient(circle at 90% 80%, rgba(225,42,0,.10), transparent 18%),
+    var(--bg);
+  overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+.container{width:min(var(--container), calc(100% - 32px)); margin:0 auto}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(8,8,8,.68);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.header-inner{
+  min-height:82px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.logo{
+  display:flex;
+  flex-direction:column;
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-.05em;
+  color:var(--accent);
+  font-size:2rem;
+}
+
+.nav{
+  display:flex;
+  gap:26px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.nav a{
+  color:var(--muted);
+  transition:.2s ease;
+}
+
+.nav a:hover{color:var(--text)}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.cart-btn,.ghost-btn,.primary-btn{
+  border:none;
+  cursor:pointer;
+  border-radius:999px;
+  transition:.2s ease;
+}
+
+.ghost-btn{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:12px 16px;
+}
+
+.primary-btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  padding:14px 20px;
+  box-shadow:0 14px 34px rgba(225,42,0,.25);
+}
+
+.cart-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  color:#fff;
+}
+
+.count{
+  min-width:24px;
+  height:24px;
+  padding:0 8px;
+  border-radius:999px;
+  background:var(--accent);
+  display:grid;
+  place-items:center;
+  font-size:.85rem;
+  font-weight:700;
+}
+
+.hero{
+  padding:70px 0 30px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:26px;
+  align-items:center;
+  min-height:calc(100vh - 120px);
+}
+
+.eyebrow{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  color:#d5d5d8;
+  font-size:.8rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+h1{
+  margin:18px 0 14px;
+  font-size:clamp(3rem,8vw,6.3rem);
+  line-height:.94;
+  letter-spacing:-.06em;
+}
+
+.hero p{
+  max-width:650px;
+  color:var(--muted);
+  font-size:1.08rem;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:28px 0 30px;
+}
+
+.metrics{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.metric{
+  min-width:150px;
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+}
+
+.metric strong{
+  display:block;
+  margin-bottom:4px;
+  letter-spacing:-.03em;
+}
+
+.metric span{
+  color:var(--muted);
+  font-size:.92rem;
+}
+
+.hero-card{
+  min-height:520px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at top right, rgba(225,42,0,.24), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    rgba(255,255,255,.03);
+  box-shadow:var(--shadow);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.hero-card .badge{
+  display:inline-flex;
+  width:max-content;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.08);
+  font-size:.8rem;
+  margin-bottom:auto;
+}
+
+.hero-card h3{
+  margin:0 0 10px;
+  font-size:clamp(2rem,3vw,3rem);
+  letter-spacing:-.04em;
+}
+
+.hero-card p{
+  margin:0;
+  color:#d2d2d6;
+  max-width:380px;
+}
+
+.section{
+  padding:90px 0;
+}
+
+.section-head{
+  margin-bottom:26px;
+}
+
+.section-head h2{
+  margin:14px 0 10px;
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:.96;
+  letter-spacing:-.05em;
+}
+
+.section-head p{
+  color:var(--muted);
+  margin:0;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.cat-card,.product,.info-card,.contact-card,.faq-item{
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+
+.cat-card{
+  min-height:180px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.cat-card span,.product .meta,.product .desc,.info-card p,.contact-card span{
+  color:var(--muted);
+}
+
+.cat-card strong{
+  font-size:1.5rem;
+  letter-spacing:-.04em;
+}
+
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+
+.toolbar-left{flex:1 1 280px}
+.toolbar-right{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.toolbar input,.toolbar select,.checkout input,.checkout textarea{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color:#fff;
+  border-radius:16px;
+  padding:14px 16px;
+  outline:none;
+}
+
+.toolbar input{width:100%}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.product{
+  overflow:hidden;
+}
+
+.product-media{
+  height:240px;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(225,42,0,.28), transparent 20%),
+    linear-gradient(135deg,#171717,#0b0b0b);
+  position:relative;
+}
+
+.product-media::after{
+  content:"";
+  position:absolute;
+  inset:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.product-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:2;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+  font-size:.8rem;
+}
+
+.product-body{
+  padding:18px;
+}
+
+.product h3{
+  margin:6px 0 10px;
+  font-size:1.3rem;
+  letter-spacing:-.03em;
+}
+
+.product .desc{
+  min-height:48px;
+  margin:0 0 18px;
+}
+
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.about-grid,.info-grid,.contacts,.featured{
+  display:grid;
+  gap:18px;
+}
+
+.featured{grid-template-columns:repeat(3,1fr)}
+.about-grid{grid-template-columns:1fr 1fr}
+.info-grid{grid-template-columns:repeat(3,1fr)}
+.contacts{grid-template-columns:repeat(3,1fr)}
+
+.about-copy p{color:var(--muted)}
+.stack{display:grid; gap:16px}
+
+.info-card,.contact-card,.faq-item{
+  padding:22px;
+}
+
+.info-card h3,.contact-card strong{
+  margin:0 0 10px;
+  display:block;
+  font-size:1.2rem;
+}
+
+.faq-list{
+  display:grid;
+  gap:14px;
+}
+
+.faq-item summary{
+  cursor:pointer;
+  font-weight:700;
+  list-style:none;
+}
+
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item p{margin:12px 0 0; color:var(--muted)}
+
+.footer{
+  padding:30px 0 44px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.footer p,.footer a{color:var(--muted)}
+
+.drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  width:min(460px,100%);
+  height:100%;
+  background:rgba(12,12,12,.98);
+  border-left:1px solid var(--line);
+  z-index:100;
+  transform:translateX(100%);
+  transition:transform .28s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.drawer.open{transform:translateX(0)}
+
+.drawer-head,.drawer-foot{
+  padding:20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.drawer-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.drawer-body{
+  flex:1;
+  overflow:auto;
+  padding:18px 20px;
+  display:grid;
+  gap:12px;
+}
+
+.cart-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.cart-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  cursor:pointer;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.checkout{
+  display:grid;
+  gap:12px;
+}
+
+.checkout textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:90;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s ease;
+}
+
+.overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%) translateY(20px);
+  background:rgba(18,18,18,.96);
+  border:1px solid var(--line);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:999px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+  z-index:120;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.empty{
+  padding:28px;
+  text-align:center;
+  border-radius:22px;
+  border:1px dashed rgba(255,255,255,.16);
+  color:var(--muted);
+}
+
+@media (max-width: 1100px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .categories,.featured,.products,.info-grid,.contacts{grid-template-columns:repeat(2,1fr)}
+  .hero{padding-top:40px}
+  .hero-grid{min-height:auto}
+  .hero-card{min-height:380px}
+}
+
+@media (max-width: 760px){
+  .nav{display:none}
+  .categories,.featured,.products,.info-grid,.contacts{grid-template-columns:1fr}
+  .toolbar,.footer-inner{flex-direction:column; align-items:stretch}
+  .toolbar-right{display:grid; grid-template-columns:1fr}
+  .logo{font-size:1.7rem}
+  h1{font-size:clamp(2.6rem, 12vw, 4rem)}
+  .hero-card{min-height:300px}
+  .cart-btn span:first-child{display:none}
+}
+```
+
+  </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
-
-  <header class="site-header" id="top">
+  <header class="header">
     <div class="container header-inner">
-      <a href="#top" class="logo">
-        <span class="logo-mark">ONYX</span>
-        <span class="logo-sub">SHOP</span>
+      <a href="#top" class="logo" id="top">
+        <span>ONYX</span>
+        <span>SHOP</span>
       </a>
 
 ```
-  <nav class="nav" id="nav">
+  <nav class="nav">
     <a href="#catalog">Каталог</a>
     <a href="#featured">Хиты</a>
     <a href="#about">О нас</a>
@@ -31,13 +595,10 @@
   </nav>
 
   <div class="header-actions">
-    <button class="icon-btn" id="searchBtn" aria-label="Поиск">⌕</button>
-    <button class="cart-btn" id="cartBtn" aria-label="Корзина">
+    <button class="ghost-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Поиск</button>
+    <button class="cart-btn" id="cartOpenBtn">
       <span>Корзина</span>
-      <span class="cart-count" id="cartCount">0</span>
-    </button>
-    <button class="burger" id="burger" aria-label="Меню">
-      <span></span><span></span><span></span>
+      <span class="count" id="cartCount">0</span>
     </button>
   </div>
 </div>
@@ -48,71 +609,65 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
+        <div>
           <div class="eyebrow">PREMIUM STREETWEAR / SELECT STORE</div>
-          <h1>Сильный стиль. <br>Чистая подача. <br>Нужные вещи.</h1>
-          <p class="hero-text">
-            Одежда, обувь и аксессуары в фирменной эстетике ONYX SHOP.
-            Удобный заказ, Telegram-связь и адаптив под все устройства.
+          <h1>Сильный стиль.<br>Чистая подача.<br>Нужные вещи.</h1>
+          <p>
+            ONYX SHOP — одежда, обувь и аксессуары в фирменной эстетике.
+            Нормальный каталог, корзина, checkout и красивый адаптив под все устройства.
           </p>
 
 ```
       <div class="hero-actions">
-        <a href="#catalog" class="btn btn-primary">Смотреть каталог</a>
-        <a href="#about" class="btn btn-secondary">О бренде</a>
+        <a class="primary-btn" href="#catalog">Смотреть каталог</a>
+        <a class="ghost-btn" href="#about">О бренде</a>
       </div>
 
-      <div class="hero-metrics">
+      <div class="metrics">
         <div class="metric">
-          <span class="metric-value">24/7</span>
-          <span class="metric-label">Приём заявок</span>
+          <strong>24/7</strong>
+          <span>Приём заявок</span>
         </div>
         <div class="metric">
-          <span class="metric-value">RF</span>
-          <span class="metric-label">Доставка по России</span>
+          <strong>RF</strong>
+          <span>Доставка по России</span>
         </div>
         <div class="metric">
-          <span class="metric-value">SELECT</span>
-          <span class="metric-label">Streetwear & accessories</span>
+          <strong>SELECT</strong>
+          <span>Streetwear & accessories</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-visual reveal">
-      <div class="hero-card hero-card-main">
-        <div class="hero-badge">NEW DROP</div>
-        <h3>ONYX CURATED</h3>
-        <p>Подборка вещей с упором на силуэт, материалы и вайб.</p>
-      </div>
-      <div class="hero-card hero-card-float">
-        <span class="mini-label">ACCESSORIES</span>
-        <strong>Goyard / Bags / Wallets</strong>
-      </div>
+    <div class="hero-card">
+      <div class="badge">NEW DROP</div>
+      <h3>ONYX CURATED</h3>
+      <p>Подборка вещей с акцентом на силуэт, материалы и общий вайб.</p>
     </div>
   </div>
 </section>
 
-<section class="section categories">
+<section class="section">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <div class="eyebrow">CATEGORIES</div>
       <h2>Категории</h2>
     </div>
 
-    <div class="category-grid">
-      <a class="category-card reveal" href="#catalog" data-filter-category="Clothing">
+    <div class="categories">
+      <a class="cat-card" href="#catalog" onclick="setCategory('Clothing')">
         <span>Clothing</span>
         <strong>Одежда</strong>
       </a>
-      <a class="category-card reveal" href="#catalog" data-filter-category="Footwear">
+      <a class="cat-card" href="#catalog" onclick="setCategory('Footwear')">
         <span>Footwear</span>
         <strong>Обувь</strong>
       </a>
-      <a class="category-card reveal" href="#catalog" data-filter-category="Accessories">
+      <a class="cat-card" href="#catalog" onclick="setCategory('Accessories')">
         <span>Accessories</span>
         <strong>Аксессуары</strong>
       </a>
-      <a class="category-card reveal" href="#featured">
+      <a class="cat-card" href="#featured">
         <span>Featured</span>
         <strong>Хиты</strong>
       </a>
@@ -120,31 +675,29 @@
   </div>
 </section>
 
-<section class="section featured" id="featured">
+<section class="section" id="featured">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <div class="eyebrow">FEATURED</div>
       <h2>Выделенные позиции</h2>
     </div>
-
-    <div class="featured-grid" id="featuredGrid"></div>
+    <div class="featured" id="featuredGrid"></div>
   </div>
 </section>
 
-<section class="section catalog" id="catalog">
+<section class="section" id="catalog">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <div class="eyebrow">CATALOG</div>
       <h2>Каталог</h2>
-      <p class="section-note">Фильтры, поиск, быстрый просмотр и добавление в корзину.</p>
+      <p>Поиск, фильтры, корзина и демо-checkout уже внутри.</p>
     </div>
 
-    <div class="catalog-toolbar reveal">
-      <div class="toolbar-search">
-        <input type="text" id="searchInput" placeholder="Поиск по названию, бренду, категории..." />
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <input id="searchInput" type="text" placeholder="Поиск по названию, бренду, категории..." />
       </div>
-
-      <div class="toolbar-filters">
+      <div class="toolbar-right">
         <select id="categoryFilter">
           <option value="all">Все категории</option>
           <option value="Clothing">Одежда</option>
@@ -165,115 +718,109 @@
       </div>
     </div>
 
-    <div class="product-grid" id="productGrid"></div>
+    <div class="products" id="productGrid"></div>
   </div>
 </section>
 
-<section class="section about" id="about">
-  <div class="container about-grid">
-    <div class="about-copy reveal">
-      <div class="eyebrow">ABOUT</div>
-      <h2>ONYX SHOP</h2>
-      <p>
-        ONYX SHOP — select store с фокусом на streetwear, аксессуары и вещи,
-        которые выглядят сильно и современно. Упор на эстетику, чистый интерфейс,
-        Telegram-связь и удобный заказ.
-      </p>
-      <p>
-        Это не просто витрина. Это брендовая подача: нужные позиции, понятный checkout,
-        адаптив на все устройства и архитектура, которую можно дальше расширять.
-      </p>
-    </div>
-
-    <div class="about-cards">
-      <div class="glass-card reveal">
-        <span>01</span>
-        <strong>Curated Style</strong>
-        <p>Подборка одежды, обуви и аксессуаров в едином вайбе.</p>
-      </div>
-      <div class="glass-card reveal">
-        <span>02</span>
-        <strong>Fast Checkout</strong>
-        <p>Корзина, контакт, адрес, комментарий — всё по делу.</p>
-      </div>
-      <div class="glass-card reveal">
-        <span>03</span>
-        <strong>Telegram Flow</strong>
-        <p>Удобная связка магазина с твоим менеджером и backend.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section delivery" id="delivery">
+<section class="section" id="about">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="eyebrow">ABOUT</div>
+        <h2>ONYX SHOP</h2>
+        <p>
+          ONYX SHOP — select store с фокусом на streetwear, обувь и аксессуары.
+          Сайт должен ощущаться как брендовая подача, а не просто сухая витрина.
+        </p>
+        <p>
+          Поэтому здесь заложены: каталог, хиты, контактные точки, корзина и архитектура,
+          которую потом можно спокойно усиливать реальными фото, оплатой и новыми страницами.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="info-card">
+          <h3>Curated Style</h3>
+          <p>Подборка товаров в едином вайбе без лишнего шума.</p>
+        </div>
+        <div class="info-card">
+          <h3>Fast Checkout</h3>
+          <p>Нормальная корзина и понятное оформление заказа.</p>
+        </div>
+        <div class="info-card">
+          <h3>Telegram Flow</h3>
+          <p>Дальше сюда легко подключается твой backend и отправка заказа.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="delivery">
+  <div class="container">
+    <div class="section-head">
       <div class="eyebrow">DELIVERY & PAYMENT</div>
       <h2>Доставка и оплата</h2>
     </div>
 
     <div class="info-grid">
-      <div class="info-card reveal">
+      <div class="info-card">
         <h3>Как заказать</h3>
-        <p>Выбираешь товар, добавляешь в корзину, указываешь контакт и адрес, отправляешь заказ.</p>
+        <p>Выбираешь товар, добавляешь в корзину, указываешь контакты и отправляешь заявку.</p>
       </div>
-      <div class="info-card reveal">
+      <div class="info-card">
         <h3>Доставка</h3>
-        <p>По России и по договорённости в другие направления. Точные сроки уточняются после заказа.</p>
+        <p>По России и по согласованию в другие направления. Сроки уточняются после оформления.</p>
       </div>
-      <div class="info-card reveal">
+      <div class="info-card">
         <h3>Оплата</h3>
-        <p>На старте — подтверждение заказа менеджером. Позже можно подключить полноценный онлайн-checkout.</p>
+        <p>Сейчас это демо-checkout. Дальше подключаем реальный backend и оплату.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section faq" id="faq">
+<section class="section" id="faq">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <div class="eyebrow">FAQ</div>
       <h2>Частые вопросы</h2>
     </div>
 
     <div class="faq-list">
-      <details class="faq-item reveal">
+      <details class="faq-item">
         <summary>Как оформить заказ?</summary>
-        <p>Добавь товары в корзину, перейди к оформлению, введи данные и отправь заявку.</p>
+        <p>Добавь товар в корзину, открой checkout, введи контакт и отправь заявку.</p>
       </details>
-      <details class="faq-item reveal">
+      <details class="faq-item">
         <summary>Можно ли узнать наличие?</summary>
-        <p>Да. Наличие видно в карточке товара, а детали можно уточнить у менеджера.</p>
+        <p>Да. Позже можно добавить статусы наличия и раздел “под заказ”.</p>
       </details>
-      <details class="faq-item reveal">
-        <summary>Есть ли доставка?</summary>
-        <p>Да, доставка доступна. Конкретные сроки и условия подтверждаются после оформления.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>Как связаться?</summary>
-        <p>Через Telegram, Instagram или TikTok — ссылки внизу страницы.</p>
+      <details class="faq-item">
+        <summary>Это уже рабочий сайт?</summary>
+        <p>Да, это рабочая витрина с корзиной. Следующий этап — подключение твоего backend и реальных фото.</p>
       </details>
     </div>
   </div>
 </section>
 
-<section class="section contacts" id="contacts">
+<section class="section" id="contacts">
   <div class="container">
-    <div class="section-head reveal">
+    <div class="section-head">
       <div class="eyebrow">CONTACTS</div>
       <h2>Связь</h2>
     </div>
 
-    <div class="contact-grid">
-      <a class="contact-card reveal" href="https://t.me/onyxshopadmin" target="_blank" rel="noopener noreferrer">
+    <div class="contacts">
+      <a class="contact-card" href="https://t.me/onyxshopadmin" target="_blank">
         <span>Telegram</span>
         <strong>@onyxshopadmin</strong>
       </a>
-      <a class="contact-card reveal" href="https://instagram.com/onyxshop_inst" target="_blank" rel="noopener noreferrer">
+      <a class="contact-card" href="https://instagram.com/onyxshop_inst" target="_blank">
         <span>Instagram</span>
         <strong>@onyxshop_inst</strong>
       </a>
-      <a class="contact-card reveal" href="https://www.tiktok.com/@onyx_zzz" target="_blank" rel="noopener noreferrer">
+      <a class="contact-card" href="https://www.tiktok.com/@onyx_zzz" target="_blank">
         <span>TikTok</span>
         <strong>@onyx_zzz</strong>
       </a>
@@ -284,13 +831,16 @@
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <div class="footer-logo">ONYX SHOP</div>
+        <div class="logo" style="font-size:1.4rem">
+          <span>ONYX</span>
+          <span>SHOP</span>
+        </div>
         <p>Streetwear / footwear / accessories.</p>
       </div>
-      <div class="footer-links">
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
         <a href="#catalog">Каталог</a>
         <a href="#about">О нас</a>
         <a href="#delivery">Доставка</a>
@@ -299,27 +849,27 @@
     </div>
   </footer>
 
-  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-    <div class="cart-drawer-header">
-      <h3>Корзина</h3>
-      <button class="icon-btn" id="closeCartBtn" aria-label="Закрыть">✕</button>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <h3 style="margin:0">Корзина</h3>
+      <button class="ghost-btn" id="closeDrawer">Закрыть</button>
     </div>
 
 ```
-<div class="cart-drawer-body" id="cartItems"></div>
+<div class="drawer-body" id="cartItems"></div>
 
-<div class="cart-drawer-footer">
-  <div class="cart-total">
+<div class="drawer-foot">
+  <div class="total">
     <span>Итого</span>
     <strong id="cartTotal">0 ₽</strong>
   </div>
 
-  <form id="checkoutForm" class="checkout-form">
-    <input type="text" id="customerName" placeholder="Имя" required />
-    <input type="text" id="customerContact" placeholder="Telegram или телефон" required />
-    <input type="text" id="customerAddress" placeholder="Адрес доставки" required />
-    <textarea id="customerComment" placeholder="Комментарий к заказу"></textarea>
-    <button type="submit" class="btn btn-primary btn-full">Оформить заказ</button>
+  <form class="checkout" id="checkoutForm">
+    <input type="text" id="name" placeholder="Имя" required />
+    <input type="text" id="contact" placeholder="Telegram или телефон" required />
+    <input type="text" id="address" placeholder="Адрес доставки" required />
+    <textarea id="comment" placeholder="Комментарий к заказу"></textarea>
+    <button type="submit" class="primary-btn">Оформить заказ</button>
   </form>
 </div>
 ```
@@ -329,24 +879,210 @@
   <div class="overlay" id="overlay"></div>
   <div class="toast" id="toast"></div>
 
-  <template id="productCardTemplate">
-    <article class="product-card reveal">
-      <div class="product-card-media">
-        <div class="product-badge"></div>
-      </div>
-      <div class="product-card-body">
-        <div class="product-meta"></div>
-        <h3 class="product-title"></h3>
-        <p class="product-desc"></p>
-        <div class="product-bottom">
-          <strong class="product-price"></strong>
-          <button class="btn btn-small btn-primary add-btn">В корзину</button>
-        </div>
-      </div>
-    </article>
-  </template>
+  <script>
+    const products = [
+      { id:1, name:"Goyard Cardholder", brand:"Goyard", category:"Accessories", price:699, badge:"BESTSELLER", description:"Компактный картхолдер в фирменной select-подаче." },
+      { id:2, name:"Corteiz Hoodie", brand:"Corteiz", category:"Clothing", price:2990, badge:"NEW", description:"Худи в streetwear-вайбе с плотным силуэтом." },
+      { id:3, name:"MM6 x Salomon", brand:"MM6 x Salomon", category:"Footwear", price:7990, badge:"LIMITED", description:"Fashion-tech пара с сильным современным силуэтом." },
+      { id:4, name:"Essential Tee", brand:"ONYX SELECT", category:"Clothing", price:1490, badge:"DROP", description:"Чистая базовая футболка под layered-образ." },
+      { id:5, name:"Structured Bag", brand:"ONYX SELECT", category:"Accessories", price:3590, badge:"NEW", description:"Минималистичная сумка для daily use." },
+      { id:6, name:"Street Runner", brand:"ONYX SELECT", category:"Footwear", price:5490, badge:"HOT", description:"Универсальная пара для everyday streetwear." }
+    ];
 
-  <script src="script.js"></script>
+    let cart = JSON.parse(localStorage.getItem("onyx_cart") || "[]");
+
+    const featuredGrid = document.getElementById("featuredGrid");
+    const productGrid = document.getElementById("productGrid");
+    const brandFilter = document.getElementById("brandFilter");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+    const searchInput = document.getElementById("searchInput");
+    const cartCount = document.getElementById("cartCount");
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("overlay");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const toast = document.getElementById("toast");
+
+    function price(v){
+      return v.toLocaleString("ru-RU") + " ₽";
+    }
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function saveCart(){
+      localStorage.setItem("onyx_cart", JSON.stringify(cart));
+    }
+
+    function updateCartCount(){
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      cartCount.textContent = total;
+    }
+
+    function openCart(){
+      drawer.classList.add("open");
+      overlay.classList.add("show");
+    }
+
+    function closeCart(){
+      drawer.classList.remove("open");
+      overlay.classList.remove("show");
+    }
+
+    function cardHTML(product){
+      return \`
+        <article class="product">
+          <div class="product-media">
+            <div class="product-badge">\${product.badge}</div>
+          </div>
+          <div class="product-body">
+            <div class="meta">\${product.brand} · \${product.category}</div>
+            <h3>\${product.name}</h3>
+            <p class="desc">\${product.description}</p>
+            <div class="product-bottom">
+              <strong>\${price(product.price)}</strong>
+              <button class="primary-btn" onclick="addToCart(\${product.id})">В корзину</button>
+            </div>
+          </div>
+        </article>
+      \`;
+    }
+
+    function renderFeatured(){
+      featuredGrid.innerHTML = products.slice(0,3).map(cardHTML).join("");
+    }
+
+    function getFilteredProducts(){
+      const search = searchInput.value.trim().toLowerCase();
+      const cat = categoryFilter.value;
+      const brand = brandFilter.value;
+      const sort = sortFilter.value;
+
+      let list = products.filter(p => {
+        const okSearch =
+          p.name.toLowerCase().includes(search) ||
+          p.brand.toLowerCase().includes(search) ||
+          p.category.toLowerCase().includes(search);
+
+        const okCat = cat === "all" || p.category === cat;
+        const okBrand = brand === "all" || p.brand === brand;
+
+        return okSearch && okCat && okBrand;
+      });
+
+      if(sort === "price-asc") list.sort((a,b) => a.price - b.price);
+      if(sort === "price-desc") list.sort((a,b) => b.price - a.price);
+      if(sort === "name-asc") list.sort((a,b) => a.name.localeCompare(b.name));
+
+      return list;
+    }
+
+    function renderProducts(){
+      const filtered = getFilteredProducts();
+      if(!filtered.length){
+        productGrid.innerHTML = '<div class="empty">Ничего не найдено. Попробуй другие фильтры.</div>';
+        return;
+      }
+      productGrid.innerHTML = filtered.map(cardHTML).join("");
+    }
+
+    function fillBrands(){
+      const brands = [...new Set(products.map(p => p.brand))];
+      brands.forEach(brand => {
+        const option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        brandFilter.appendChild(option);
+      });
+    }
+
+    function addToCart(id){
+      const existing = cart.find(x => x.id === id);
+      if(existing){
+        existing.qty += 1;
+      } else {
+        const p = products.find(x => x.id === id);
+        cart.push({...p, qty:1});
+      }
+      renderCart();
+      showToast("Товар добавлен в корзину");
+      openCart();
+    }
+
+    function changeQty(id, type){
+      const item = cart.find(x => x.id === id);
+      if(!item) return;
+      if(type === "plus") item.qty += 1;
+      if(type === "minus") item.qty -= 1;
+      cart = cart.filter(x => x.qty > 0);
+      renderCart();
+    }
+
+    function renderCart(){
+      if(!cart.length){
+        cartItems.innerHTML = '<div class="empty">Корзина пока пустая.</div>';
+        cartTotal.textContent = price(0);
+        updateCartCount();
+        saveCart();
+        return;
+      }
+
+      cartItems.innerHTML = cart.map(item => \`
+        <div class="cart-item">
+          <div>
+            <strong>\${item.name}</strong>
+            <small>\${item.brand} · \${item.category}</small>
+            <small>\${price(item.price)}</small>
+          </div>
+          <div class="qty">
+            <button onclick="changeQty(\${item.id}, 'minus')">−</button>
+            <span>\${item.qty}</span>
+            <button onclick="changeQty(\${item.id}, 'plus')">+</button>
+          </div>
+        </div>
+      \`).join("");
+
+      cartTotal.textContent = price(cart.reduce((s, i) => s + i.price * i.qty, 0));
+      updateCartCount();
+      saveCart();
+    }
+
+    function setCategory(category){
+      categoryFilter.value = category;
+      renderProducts();
+    }
+
+    searchInput.addEventListener("input", renderProducts);
+    categoryFilter.addEventListener("change", renderProducts);
+    brandFilter.addEventListener("change", renderProducts);
+    sortFilter.addEventListener("change", renderProducts);
+
+    document.getElementById("cartOpenBtn").addEventListener("click", openCart);
+    document.getElementById("closeDrawer").addEventListener("click", closeCart);
+    overlay.addEventListener("click", closeCart);
+
+    document.getElementById("checkoutForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      if(!cart.length){
+        showToast("Корзина пустая");
+        return;
+      }
+      showToast("Демо-заказ отправлен");
+      this.reset();
+      cart = [];
+      renderCart();
+      setTimeout(closeCart, 400);
+    });
+
+    fillBrands();
+    renderFeatured();
+    renderProducts();
+    renderCart();
+  </script>
 
 </body>
 </html>
