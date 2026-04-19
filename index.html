@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONYX SHOP</title>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b0b0b;
+    color:white;
+}
+header {
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.logo {
+    color:#ff3b00;
+    font-weight:bold;
+    font-size:20px;
+}
+.hero {
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+.hero h1 {
+    font-size:40px;
+}
+.btn {
+    margin-top:20px;
+    padding:15px 30px;
+    background:#ff3b00;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+.products {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
+}
+.card {
+    background:#111;
+    padding:20px;
+    border-radius:10px;
+}
+footer {
+    padding:20px;
+    text-align:center;
+    opacity:0.5;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">ONYX SHOP</div>
+</header>
+
+<section class="hero">
+<div>
+<h1>Streetwear Select Store</h1>
+<p>Одежда, обувь, аксессуары</p>
+<button class="btn">Смотреть каталог</button>
+</div>
+</section>
+
+<section class="products">
+<div class="card">
+<h3>Goyard Cardholder</h3>
+<p>699 ₽</p>
+</div>
+
+<div class="card">
+<h3>Corteiz Hoodie</h3>
+<p>2990 ₽</p>
+</div>
+
+<div class="card">
+<h3>MM6 x Salomon</h3>
+<p>7990 ₽</p>
+</div>
+</section>
+
+<footer>
+<p>Telegram: @onyxshopadmin</p>
+<p>Instagram: @onyxshop_inst</p>
+<p>TikTok: @onyx_zzz</p>
+</footer>
+
+</body>
+</html>
