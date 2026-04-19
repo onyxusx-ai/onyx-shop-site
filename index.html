@@ -2,102 +2,351 @@
 
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ONYX SHOP</title>
-
-<style>
-body {
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0b0b0b;
-    color:white;
-}
-header {
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.logo {
-    color:#ff3b00;
-    font-weight:bold;
-    font-size:20px;
-}
-.hero {
-    height:80vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-.hero h1 {
-    font-size:40px;
-}
-.btn {
-    margin-top:20px;
-    padding:15px 30px;
-    background:#ff3b00;
-    border:none;
-    color:white;
-    cursor:pointer;
-}
-.products {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-    padding:20px;
-}
-.card {
-    background:#111;
-    padding:20px;
-    border-radius:10px;
-}
-footer {
-    padding:20px;
-    text-align:center;
-    opacity:0.5;
-}
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONYX SHOP — Streetwear Select Store</title>
+  <meta name="description" content="ONYX SHOP — select store одежды, обуви и аксессуаров." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="grain"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
 
-<header>
-<div class="logo">ONYX SHOP</div>
-</header>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="logo">
+        <span class="logo-mark">ONYX</span>
+        <span class="logo-sub">SHOP</span>
+      </a>
 
-<section class="hero">
-<div>
-<h1>Streetwear Select Store</h1>
-<p>Одежда, обувь, аксессуары</p>
-<button class="btn">Смотреть каталог</button>
+```
+  <nav class="nav" id="nav">
+    <a href="#catalog">Каталог</a>
+    <a href="#featured">Хиты</a>
+    <a href="#about">О нас</a>
+    <a href="#delivery">Доставка</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="icon-btn" id="searchBtn" aria-label="Поиск">⌕</button>
+    <button class="cart-btn" id="cartBtn" aria-label="Корзина">
+      <span>Корзина</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </div>
+```
+
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">PREMIUM STREETWEAR / SELECT STORE</div>
+          <h1>Сильный стиль. <br>Чистая подача. <br>Нужные вещи.</h1>
+          <p class="hero-text">
+            Одежда, обувь и аксессуары в фирменной эстетике ONYX SHOP.
+            Удобный заказ, Telegram-связь и адаптив под все устройства.
+          </p>
+
+```
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-primary">Смотреть каталог</a>
+        <a href="#about" class="btn btn-secondary">О бренде</a>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="metric">
+          <span class="metric-value">24/7</span>
+          <span class="metric-label">Приём заявок</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">RF</span>
+          <span class="metric-label">Доставка по России</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">SELECT</span>
+          <span class="metric-label">Streetwear & accessories</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="hero-card hero-card-main">
+        <div class="hero-badge">NEW DROP</div>
+        <h3>ONYX CURATED</h3>
+        <p>Подборка вещей с упором на силуэт, материалы и вайб.</p>
+      </div>
+      <div class="hero-card hero-card-float">
+        <span class="mini-label">ACCESSORIES</span>
+        <strong>Goyard / Bags / Wallets</strong>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="products">
-<div class="card">
-<h3>Goyard Cardholder</h3>
-<p>699 ₽</p>
-</div>
+<section class="section categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">CATEGORIES</div>
+      <h2>Категории</h2>
+    </div>
 
-<div class="card">
-<h3>Corteiz Hoodie</h3>
-<p>2990 ₽</p>
-</div>
-
-<div class="card">
-<h3>MM6 x Salomon</h3>
-<p>7990 ₽</p>
-</div>
+    <div class="category-grid">
+      <a class="category-card reveal" href="#catalog" data-filter-category="Clothing">
+        <span>Clothing</span>
+        <strong>Одежда</strong>
+      </a>
+      <a class="category-card reveal" href="#catalog" data-filter-category="Footwear">
+        <span>Footwear</span>
+        <strong>Обувь</strong>
+      </a>
+      <a class="category-card reveal" href="#catalog" data-filter-category="Accessories">
+        <span>Accessories</span>
+        <strong>Аксессуары</strong>
+      </a>
+      <a class="category-card reveal" href="#featured">
+        <span>Featured</span>
+        <strong>Хиты</strong>
+      </a>
+    </div>
+  </div>
 </section>
 
-<footer>
-<p>Telegram: @onyxshopadmin</p>
-<p>Instagram: @onyxshop_inst</p>
-<p>TikTok: @onyx_zzz</p>
-</footer>
+<section class="section featured" id="featured">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">FEATURED</div>
+      <h2>Выделенные позиции</h2>
+    </div>
+
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<section class="section catalog" id="catalog">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">CATALOG</div>
+      <h2>Каталог</h2>
+      <p class="section-note">Фильтры, поиск, быстрый просмотр и добавление в корзину.</p>
+    </div>
+
+    <div class="catalog-toolbar reveal">
+      <div class="toolbar-search">
+        <input type="text" id="searchInput" placeholder="Поиск по названию, бренду, категории..." />
+      </div>
+
+      <div class="toolbar-filters">
+        <select id="categoryFilter">
+          <option value="all">Все категории</option>
+          <option value="Clothing">Одежда</option>
+          <option value="Footwear">Обувь</option>
+          <option value="Accessories">Аксессуары</option>
+        </select>
+
+        <select id="brandFilter">
+          <option value="all">Все бренды</option>
+        </select>
+
+        <select id="sortFilter">
+          <option value="default">По умолчанию</option>
+          <option value="price-asc">Цена: по возрастанию</option>
+          <option value="price-desc">Цена: по убыванию</option>
+          <option value="name-asc">Название: A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <div class="eyebrow">ABOUT</div>
+      <h2>ONYX SHOP</h2>
+      <p>
+        ONYX SHOP — select store с фокусом на streetwear, аксессуары и вещи,
+        которые выглядят сильно и современно. Упор на эстетику, чистый интерфейс,
+        Telegram-связь и удобный заказ.
+      </p>
+      <p>
+        Это не просто витрина. Это брендовая подача: нужные позиции, понятный checkout,
+        адаптив на все устройства и архитектура, которую можно дальше расширять.
+      </p>
+    </div>
+
+    <div class="about-cards">
+      <div class="glass-card reveal">
+        <span>01</span>
+        <strong>Curated Style</strong>
+        <p>Подборка одежды, обуви и аксессуаров в едином вайбе.</p>
+      </div>
+      <div class="glass-card reveal">
+        <span>02</span>
+        <strong>Fast Checkout</strong>
+        <p>Корзина, контакт, адрес, комментарий — всё по делу.</p>
+      </div>
+      <div class="glass-card reveal">
+        <span>03</span>
+        <strong>Telegram Flow</strong>
+        <p>Удобная связка магазина с твоим менеджером и backend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section delivery" id="delivery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">DELIVERY & PAYMENT</div>
+      <h2>Доставка и оплата</h2>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal">
+        <h3>Как заказать</h3>
+        <p>Выбираешь товар, добавляешь в корзину, указываешь контакт и адрес, отправляешь заказ.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Доставка</h3>
+        <p>По России и по договорённости в другие направления. Точные сроки уточняются после заказа.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Оплата</h3>
+        <p>На старте — подтверждение заказа менеджером. Позже можно подключить полноценный онлайн-checkout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Частые вопросы</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Как оформить заказ?</summary>
+        <p>Добавь товары в корзину, перейди к оформлению, введи данные и отправь заявку.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Можно ли узнать наличие?</summary>
+        <p>Да. Наличие видно в карточке товара, а детали можно уточнить у менеджера.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Есть ли доставка?</summary>
+        <p>Да, доставка доступна. Конкретные сроки и условия подтверждаются после оформления.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Как связаться?</summary>
+        <p>Через Telegram, Instagram или TikTok — ссылки внизу страницы.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section contacts" id="contacts">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">CONTACTS</div>
+      <h2>Связь</h2>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="https://t.me/onyxshopadmin" target="_blank" rel="noopener noreferrer">
+        <span>Telegram</span>
+        <strong>@onyxshopadmin</strong>
+      </a>
+      <a class="contact-card reveal" href="https://instagram.com/onyxshop_inst" target="_blank" rel="noopener noreferrer">
+        <span>Instagram</span>
+        <strong>@onyxshop_inst</strong>
+      </a>
+      <a class="contact-card reveal" href="https://www.tiktok.com/@onyx_zzz" target="_blank" rel="noopener noreferrer">
+        <span>TikTok</span>
+        <strong>@onyx_zzz</strong>
+      </a>
+    </div>
+  </div>
+</section>
+```
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo">ONYX SHOP</div>
+        <p>Streetwear / footwear / accessories.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+    </div>
+  </footer>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h3>Корзина</h3>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Закрыть">✕</button>
+    </div>
+
+```
+<div class="cart-drawer-body" id="cartItems"></div>
+
+<div class="cart-drawer-footer">
+  <div class="cart-total">
+    <span>Итого</span>
+    <strong id="cartTotal">0 ₽</strong>
+  </div>
+
+  <form id="checkoutForm" class="checkout-form">
+    <input type="text" id="customerName" placeholder="Имя" required />
+    <input type="text" id="customerContact" placeholder="Telegram или телефон" required />
+    <input type="text" id="customerAddress" placeholder="Адрес доставки" required />
+    <textarea id="customerComment" placeholder="Комментарий к заказу"></textarea>
+    <button type="submit" class="btn btn-primary btn-full">Оформить заказ</button>
+  </form>
+</div>
+```
+
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <template id="productCardTemplate">
+    <article class="product-card reveal">
+      <div class="product-card-media">
+        <div class="product-badge"></div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-meta"></div>
+        <h3 class="product-title"></h3>
+        <p class="product-desc"></p>
+        <div class="product-bottom">
+          <strong class="product-price"></strong>
+          <button class="btn btn-small btn-primary add-btn">В корзину</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
