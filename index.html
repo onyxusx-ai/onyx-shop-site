@@ -1,847 +1,1252 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONYX SHOP</title>
-  <meta name="description" content="ONYX SHOP — streetwear select store" />
+  <title>ONYX SHOP — Streetwear Select Store</title>
+  <meta name="description" content="ONYX SHOP — streetwear, select clothing, accessories, worldwide shipping." />
   <style>
-    :root{
-      --bg:#070707;
-      --bg2:#0f0f10;
-      --panel:rgba(255,255,255,.05);
-      --line:rgba(255,255,255,.08);
-      --text:#f5f5f5;
-      --muted:#a0a0a8;
-      --accent:#e12a00;
-      --accent2:#ff4a16;
-      --radius:22px;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
-      --container:1200px;
+    :root {
+      --bg: #050505;
+      --bg-soft: #0d0d0f;
+      --panel: rgba(255,255,255,0.05);
+      --panel-2: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.09);
+      --text: #f5f5f5;
+      --muted: #a5a5ac;
+      --accent: #e12a00;
+      --accent-2: #ff5a1f;
+      --success: #16a34a;
+      --shadow: 0 25px 70px rgba(0,0,0,0.45);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --container: 1280px;
+      --header-h: 84px;
     }
 
-```
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter, Arial, sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 10% 15%, rgba(225,42,0,.14), transparent 22%),
-    radial-gradient(circle at 90% 80%, rgba(225,42,0,.10), transparent 18%),
-    var(--bg);
-  overflow-x:hidden;
-}
-
-a{text-decoration:none;color:inherit}
-button,input,select,textarea{font:inherit}
-.container{width:min(var(--container), calc(100% - 32px)); margin:0 auto}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  backdrop-filter:blur(18px);
-  background:rgba(8,8,8,.68);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.header-inner{
-  min-height:82px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-}
-
-.logo{
-  display:flex;
-  flex-direction:column;
-  line-height:.9;
-  font-weight:900;
-  letter-spacing:-.05em;
-  color:var(--accent);
-  font-size:2rem;
-}
-
-.nav{
-  display:flex;
-  gap:26px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.nav a{
-  color:var(--muted);
-  transition:.2s ease;
-}
-
-.nav a:hover{color:var(--text)}
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.cart-btn,.ghost-btn,.primary-btn{
-  border:none;
-  cursor:pointer;
-  border-radius:999px;
-  transition:.2s ease;
-}
-
-.ghost-btn{
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--line);
-  color:var(--text);
-  padding:12px 16px;
-}
-
-.primary-btn{
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;
-  padding:14px 20px;
-  box-shadow:0 14px 34px rgba(225,42,0,.25);
-}
-
-.cart-btn{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 16px;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--line);
-  color:#fff;
-}
-
-.count{
-  min-width:24px;
-  height:24px;
-  padding:0 8px;
-  border-radius:999px;
-  background:var(--accent);
-  display:grid;
-  place-items:center;
-  font-size:.85rem;
-  font-weight:700;
-}
-
-.hero{
-  padding:70px 0 30px;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:26px;
-  align-items:center;
-  min-height:calc(100vh - 120px);
-}
-
-.eyebrow{
-  display:inline-flex;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--line);
-  color:#d5d5d8;
-  font-size:.8rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-h1{
-  margin:18px 0 14px;
-  font-size:clamp(3rem,8vw,6.3rem);
-  line-height:.94;
-  letter-spacing:-.06em;
-}
-
-.hero p{
-  max-width:650px;
-  color:var(--muted);
-  font-size:1.08rem;
-}
-
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:28px 0 30px;
-}
-
-.metrics{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-}
-
-.metric{
-  min-width:150px;
-  padding:14px 16px;
-  border-radius:18px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-}
-
-.metric strong{
-  display:block;
-  margin-bottom:4px;
-  letter-spacing:-.03em;
-}
-
-.metric span{
-  color:var(--muted);
-  font-size:.92rem;
-}
-
-.hero-card{
-  min-height:520px;
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.08);
-  background:
-    radial-gradient(circle at top right, rgba(225,42,0,.24), transparent 28%),
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
-    rgba(255,255,255,.03);
-  box-shadow:var(--shadow);
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-
-.hero-card .badge{
-  display:inline-flex;
-  width:max-content;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.08);
-  font-size:.8rem;
-  margin-bottom:auto;
-}
-
-.hero-card h3{
-  margin:0 0 10px;
-  font-size:clamp(2rem,3vw,3rem);
-  letter-spacing:-.04em;
-}
-
-.hero-card p{
-  margin:0;
-  color:#d2d2d6;
-  max-width:380px;
-}
-
-.section{
-  padding:90px 0;
-}
-
-.section-head{
-  margin-bottom:26px;
-}
-
-.section-head h2{
-  margin:14px 0 10px;
-  font-size:clamp(2rem,4vw,3.2rem);
-  line-height:.96;
-  letter-spacing:-.05em;
-}
-
-.section-head p{
-  color:var(--muted);
-  margin:0;
-}
-
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.cat-card,.product,.info-card,.contact-card,.faq-item{
-  border-radius:22px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-}
-
-.cat-card{
-  min-height:180px;
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.cat-card span,.product .meta,.product .desc,.info-card p,.contact-card span{
-  color:var(--muted);
-}
-
-.cat-card strong{
-  font-size:1.5rem;
-  letter-spacing:-.04em;
-}
-
-.toolbar{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:22px;
-}
-
-.toolbar-left{flex:1 1 280px}
-.toolbar-right{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.toolbar input,.toolbar select,.checkout input,.checkout textarea{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color:#fff;
-  border-radius:16px;
-  padding:14px 16px;
-  outline:none;
-}
-
-.toolbar input{width:100%}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.product{
-  overflow:hidden;
-}
-
-.product-media{
-  height:240px;
-  background:
-    radial-gradient(circle at 72% 22%, rgba(225,42,0,.28), transparent 20%),
-    linear-gradient(135deg,#171717,#0b0b0b);
-  position:relative;
-}
-
-.product-media::after{
-  content:"";
-  position:absolute;
-  inset:18px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.product-badge{
-  position:absolute;
-  top:18px;
-  left:18px;
-  z-index:2;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.08);
-  font-size:.8rem;
-}
-
-.product-body{
-  padding:18px;
-}
-
-.product h3{
-  margin:6px 0 10px;
-  font-size:1.3rem;
-  letter-spacing:-.03em;
-}
-
-.product .desc{
-  min-height:48px;
-  margin:0 0 18px;
-}
-
-.product-bottom{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.about-grid,.info-grid,.contacts,.featured{
-  display:grid;
-  gap:18px;
-}
-
-.featured{grid-template-columns:repeat(3,1fr)}
-.about-grid{grid-template-columns:1fr 1fr}
-.info-grid{grid-template-columns:repeat(3,1fr)}
-.contacts{grid-template-columns:repeat(3,1fr)}
-
-.about-copy p{color:var(--muted)}
-.stack{display:grid; gap:16px}
-
-.info-card,.contact-card,.faq-item{
-  padding:22px;
-}
-
-.info-card h3,.contact-card strong{
-  margin:0 0 10px;
-  display:block;
-  font-size:1.2rem;
-}
-
-.faq-list{
-  display:grid;
-  gap:14px;
-}
-
-.faq-item summary{
-  cursor:pointer;
-  font-weight:700;
-  list-style:none;
-}
-
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item p{margin:12px 0 0; color:var(--muted)}
-
-.footer{
-  padding:30px 0 44px;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  gap:18px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.footer p,.footer a{color:var(--muted)}
-
-.drawer{
-  position:fixed;
-  top:0;
-  right:0;
-  width:min(460px,100%);
-  height:100%;
-  background:rgba(12,12,12,.98);
-  border-left:1px solid var(--line);
-  z-index:100;
-  transform:translateX(100%);
-  transition:transform .28s ease;
-  display:flex;
-  flex-direction:column;
-}
-
-.drawer.open{transform:translateX(0)}
-
-.drawer-head,.drawer-foot{
-  padding:20px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.drawer-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.drawer-body{
-  flex:1;
-  overflow:auto;
-  padding:18px 20px;
-  display:grid;
-  gap:12px;
-}
-
-.cart-item{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  padding:14px;
-  border-radius:16px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.cart-item small{
-  display:block;
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.qty button{
-  width:28px;
-  height:28px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  cursor:pointer;
-}
-
-.total{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.checkout{
-  display:grid;
-  gap:12px;
-}
-
-.checkout textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:90;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s ease;
-}
-
-.overlay.show{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:24px;
-  transform:translateX(-50%) translateY(20px);
-  background:rgba(18,18,18,.96);
-  border:1px solid var(--line);
-  color:#fff;
-  padding:12px 18px;
-  border-radius:999px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s ease;
-  z-index:120;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-.empty{
-  padding:28px;
-  text-align:center;
-  border-radius:22px;
-  border:1px dashed rgba(255,255,255,.16);
-  color:var(--muted);
-}
-
-@media (max-width: 1100px){
-  .hero-grid,.about-grid{grid-template-columns:1fr}
-  .categories,.featured,.products,.info-grid,.contacts{grid-template-columns:repeat(2,1fr)}
-  .hero{padding-top:40px}
-  .hero-grid{min-height:auto}
-  .hero-card{min-height:380px}
-}
-
-@media (max-width: 760px){
-  .nav{display:none}
-  .categories,.featured,.products,.info-grid,.contacts{grid-template-columns:1fr}
-  .toolbar,.footer-inner{flex-direction:column; align-items:stretch}
-  .toolbar-right{display:grid; grid-template-columns:1fr}
-  .logo{font-size:1.7rem}
-  h1{font-size:clamp(2.6rem, 12vw, 4rem)}
-  .hero-card{min-height:300px}
-  .cart-btn span:first-child{display:none}
-}
-```
-
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(225,42,0,.14), transparent 24%),
+        radial-gradient(circle at 88% 82%, rgba(225,42,0,.10), transparent 20%),
+        linear-gradient(180deg, #080808 0%, #050505 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image:
+        radial-gradient(circle at 20% 20%, #fff 0.7px, transparent 0.8px),
+        radial-gradient(circle at 70% 35%, #fff 0.7px, transparent 0.8px),
+        radial-gradient(circle at 30% 80%, #fff 0.7px, transparent 0.8px);
+      background-size: 180px 180px;
+    }
+
+    .glow {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 999px;
+      filter: blur(110px);
+      opacity: .18;
+    }
+
+    .glow-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      top: 90px;
+      left: -50px;
+    }
+
+    .glow-2 {
+      width: 380px;
+      height: 380px;
+      background: #7a2100;
+      right: -90px;
+      bottom: 70px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-h);
+      backdrop-filter: blur(18px);
+      background: rgba(6,6,6,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 0.82;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      user-select: none;
+    }
+
+    .logo-top,
+    .logo-bottom {
+      font-size: 2rem;
+      background: linear-gradient(180deg, #ff6a2e 0%, #ff3d0d 42%, #cc2200 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 8px 30px rgba(225,42,0,0.18);
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      transition: color .22s ease, transform .22s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn,
+    .cart-btn,
+    .primary-btn,
+    .secondary-btn,
+    .qty-btn,
+    .chip {
+      border: 1px solid var(--line);
+      transition: transform .22s ease, background .22s ease, border-color .22s ease, opacity .22s ease;
+    }
+
+    .icon-btn:hover,
+    .cart-btn:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover,
+    .qty-btn:hover,
+    .chip:hover {
+      transform: translateY(-1px);
+    }
+
+    .icon-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .cart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      min-width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .burger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .burger span {
+      position: absolute;
+      left: 11px;
+      right: 11px;
+      height: 2px;
+      background: #fff;
+      border-radius: 999px;
+    }
+
+    .burger span:nth-child(1) { top: 14px; }
+    .burger span:nth-child(2) { top: 21px; }
+    .burger span:nth-child(3) { top: 28px; }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      padding: 58px 0 24px;
+    }
+
+    .hero-grid {
+      min-height: calc(100vh - var(--header-h) - 24px);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      color: #dbdbdf;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: .94;
+      letter-spacing: -.08em;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 28px 0 28px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      color: #fff;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 16px 40px rgba(225,42,0,.28);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .metric {
+      min-width: 170px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1rem;
+      letter-spacing: -.03em;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .hero-card {
+      min-height: 540px;
+      padding: 28px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at top right, rgba(225,42,0,.22), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      margin-bottom: auto;
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: .8rem;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 3.1rem);
+      letter-spacing: -.05em;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #d2d2d8;
+      max-width: 360px;
+    }
+
+    .section {
+      position: relative;
+      z-index: 2;
+      padding: 88px 0;
+    }
+
+    .section-head {
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 14px 0 10px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: .96;
+      letter-spacing: -.06em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .category-grid,
+    .featured-grid,
+    .product-grid,
+    .info-grid,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .category-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .category-card,
+    .product-card,
+    .info-card,
+    .contact-card,
+    .faq-item,
+    .about-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+    }
+
+    .category-card {
+      min-height: 180px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .category-card span,
+    .product-meta,
+    .product-desc,
+    .info-card p,
+    .contact-card span,
+    .faq-item p,
+    .about-card p {
+      color: var(--muted);
+    }
+
+    .category-card strong {
+      font-size: 1.55rem;
+      letter-spacing: -.05em;
+    }
+
+    .featured-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .toolbar-right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-right select,
+    .search-panel input,
+    .checkout-form input,
+    .checkout-form textarea {
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      outline: none;
+    }
+
+    .search-panel {
+      display: none;
+      margin-bottom: 16px;
+    }
+
+    .search-panel.show {
+      display: block;
+      animation: fadeUp .28s ease;
+    }
+
+    .search-panel input {
+      width: 100%;
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background:
+        radial-gradient(circle at 72% 22%, rgba(225,42,0,.18), transparent 18%),
+        linear-gradient(135deg, #171717, #0b0b0b);
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #111;
+    }
+
+    .product-media.no-image::after {
+      content: "ONYX SHOP";
+      position: absolute;
+      inset: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.35);
+      font-weight: 800;
+      letter-spacing: .12em;
+      font-size: .9rem;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(10px);
+      font-size: .8rem;
+    }
+
+    .product-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-meta {
+      font-size: .92rem;
+    }
+
+    .product-title {
+      margin: 6px 0 10px;
+      font-size: 1.18rem;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+    }
+
+    .product-desc {
+      margin: 0 0 14px;
+      min-height: 54px;
+      font-size: .95rem;
+    }
+
+    .product-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #dbdbdf;
+      font-size: .8rem;
+    }
+
+    .product-bottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .product-actions button {
+      flex: 1;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .about-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .about-card,
+    .info-card,
+    .contact-card {
+      padding: 22px;
+    }
+
+    .about-card strong,
+    .info-card h3,
+    .contact-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .info-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 22px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 700;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item p {
+      margin: 12px 0 0;
+    }
+
+    .contact-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .site-footer {
+      position: relative;
+      z-index: 2;
+      padding: 28px 0 42px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 0.82;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo span {
+      font-size: 1.3rem;
+      background: linear-gradient(180deg, #ff6a2e 0%, #ff3d0d 42%, #cc2200 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer-inner p,
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .24s ease;
+      z-index: 80;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(470px, 100%);
+      height: 100%;
+      background: rgba(10,10,10,0.98);
+      border-left: 1px solid var(--line);
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-head,
+    .cart-foot {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .cart-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow: auto;
+      padding: 18px 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .cart-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #141414;
+      display: grid;
+      place-items: center;
+    }
+
+    .cart-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .cart-item small {
+      display: block;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .cart-actions {
+      display: grid;
+      justify-items: end;
+      gap: 8px;
+    }
+
+    .qty-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      border: none;
+      background: transparent;
+      color: #ff7b5c;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .checkout-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .checkout-form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(18,18,18,0.96);
+      border: 1px solid var(--line);
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .24s ease, transform .24s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .empty-state {
+      padding: 28px;
+      border-radius: 22px;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,0.16);
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid,
+      .featured-grid,
+      .product-grid,
+      .info-grid,
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-card {
+        min-height: 380px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root { --header-h: 76px; }
+
+      .nav {
+        position: fixed;
+        top: var(--header-h);
+        right: 12px;
+        left: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+        border-radius: 22px;
+        background: rgba(10,10,10,0.98);
+        border: 1px solid var(--line);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .24s ease;
+      }
+
+      .nav.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .burger {
+        display: inline-block;
+      }
+
+      .category-grid,
+      .featured-grid,
+      .product-grid,
+      .info-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        min-height: auto;
+      }
+
+      .catalog-toolbar,
+      .footer-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar-right {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .cart-btn span:first-child {
+        display: none;
+      }
+
+      .cart-item {
+        grid-template-columns: 58px 1fr;
+      }
+
+      .cart-actions {
+        grid-column: 1 / -1;
+        justify-items: start;
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="header">
+  <div class="grain"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <header class="site-header">
     <div class="container header-inner">
-      <a href="#top" class="logo" id="top">
-        <span>ONYX</span>
-        <span>SHOP</span>
+      <a href="#top" class="logo" id="top" aria-label="ONYX SHOP">
+        <span class="logo-top">ONYX</span>
+        <span class="logo-bottom">SHOP</span>
       </a>
 
-```
-  <nav class="nav">
-    <a href="#catalog">Каталог</a>
-    <a href="#featured">Хиты</a>
-    <a href="#about">О нас</a>
-    <a href="#delivery">Доставка</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contacts">Контакты</a>
-  </nav>
+      <nav class="nav" id="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#featured">Хиты</a>
+        <a href="#about">О нас</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
 
-  <div class="header-actions">
-    <button class="ghost-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Поиск</button>
-    <button class="cart-btn" id="cartOpenBtn">
-      <span>Корзина</span>
-      <span class="count" id="cartCount">0</span>
-    </button>
-  </div>
-</div>
-```
-
+      <div class="header-actions">
+        <button class="icon-btn" id="toggleSearchBtn" aria-label="Поиск">⌕</button>
+        <button class="cart-btn" id="openCartBtn" aria-label="Корзина">
+          <span>Корзина</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="reveal">
           <div class="eyebrow">PREMIUM STREETWEAR / SELECT STORE</div>
           <h1>Сильный стиль.<br>Чистая подача.<br>Нужные вещи.</h1>
-          <p>
-            ONYX SHOP — одежда, обувь и аксессуары в фирменной эстетике.
-            Нормальный каталог, корзина, checkout и красивый адаптив под все устройства.
+          <p class="hero-text">
+            ONYX SHOP — select store одежды, аксессуаров и акцентных позиций.
+            Эстетичный сайт, понятный каталог и подача, которая выглядит не дёшево.
           </p>
 
-```
-      <div class="hero-actions">
-        <a class="primary-btn" href="#catalog">Смотреть каталог</a>
-        <a class="ghost-btn" href="#about">О бренде</a>
-      </div>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#catalog">Смотреть каталог</a>
+            <a class="secondary-btn" href="#about">О бренде</a>
+          </div>
 
-      <div class="metrics">
-        <div class="metric">
-          <strong>24/7</strong>
-          <span>Приём заявок</span>
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>🌍 Worldwide</strong>
+              <span>Доставка по всему миру</span>
+            </div>
+            <div class="metric">
+              <strong>✈ 3–23 days</strong>
+              <span>Средние сроки доставки</span>
+            </div>
+            <div class="metric">
+              <strong>SELECT</strong>
+              <span>Streetwear / Accessories</span>
+            </div>
+          </div>
         </div>
-        <div class="metric">
-          <strong>RF</strong>
-          <span>Доставка по России</span>
-        </div>
-        <div class="metric">
-          <strong>SELECT</strong>
-          <span>Streetwear & accessories</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="hero-card">
-      <div class="badge">NEW DROP</div>
-      <h3>ONYX CURATED</h3>
-      <p>Подборка вещей с акцентом на силуэт, материалы и общий вайб.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">CATEGORIES</div>
-      <h2>Категории</h2>
-    </div>
-
-    <div class="categories">
-      <a class="cat-card" href="#catalog" onclick="setCategory('Clothing')">
-        <span>Clothing</span>
-        <strong>Одежда</strong>
-      </a>
-      <a class="cat-card" href="#catalog" onclick="setCategory('Footwear')">
-        <span>Footwear</span>
-        <strong>Обувь</strong>
-      </a>
-      <a class="cat-card" href="#catalog" onclick="setCategory('Accessories')">
-        <span>Accessories</span>
-        <strong>Аксессуары</strong>
-      </a>
-      <a class="cat-card" href="#featured">
-        <span>Featured</span>
-        <strong>Хиты</strong>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="featured">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">FEATURED</div>
-      <h2>Выделенные позиции</h2>
-    </div>
-    <div class="featured" id="featuredGrid"></div>
-  </div>
-</section>
-
-<section class="section" id="catalog">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">CATALOG</div>
-      <h2>Каталог</h2>
-      <p>Поиск, фильтры, корзина и демо-checkout уже внутри.</p>
-    </div>
-
-    <div class="toolbar">
-      <div class="toolbar-left">
-        <input id="searchInput" type="text" placeholder="Поиск по названию, бренду, категории..." />
-      </div>
-      <div class="toolbar-right">
-        <select id="categoryFilter">
-          <option value="all">Все категории</option>
-          <option value="Clothing">Одежда</option>
-          <option value="Footwear">Обувь</option>
-          <option value="Accessories">Аксессуары</option>
-        </select>
-
-        <select id="brandFilter">
-          <option value="all">Все бренды</option>
-        </select>
-
-        <select id="sortFilter">
-          <option value="default">По умолчанию</option>
-          <option value="price-asc">Цена: по возрастанию</option>
-          <option value="price-desc">Цена: по убыванию</option>
-          <option value="name-asc">Название: A–Z</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="products" id="productGrid"></div>
-  </div>
-</section>
-
-<section class="section" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-copy">
-        <div class="eyebrow">ABOUT</div>
-        <h2>ONYX SHOP</h2>
-        <p>
-          ONYX SHOP — select store с фокусом на streetwear, обувь и аксессуары.
-          Сайт должен ощущаться как брендовая подача, а не просто сухая витрина.
-        </p>
-        <p>
-          Поэтому здесь заложены: каталог, хиты, контактные точки, корзина и архитектура,
-          которую потом можно спокойно усиливать реальными фото, оплатой и новыми страницами.
-        </p>
-      </div>
-
-      <div class="stack">
-        <div class="info-card">
-          <h3>Curated Style</h3>
-          <p>Подборка товаров в едином вайбе без лишнего шума.</p>
-        </div>
-        <div class="info-card">
-          <h3>Fast Checkout</h3>
-          <p>Нормальная корзина и понятное оформление заказа.</p>
-        </div>
-        <div class="info-card">
-          <h3>Telegram Flow</h3>
-          <p>Дальше сюда легко подключается твой backend и отправка заказа.</p>
+        <div class="hero-card reveal">
+          <div class="hero-badge">NEW DROP / ONYX CURATED</div>
+          <h3>Редкие вещи. Нормальный вайб.</h3>
+          <p>Каталог собран под streetwear, statement-позиции и аксессуары, которые сразу цепляют.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section" id="delivery">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">DELIVERY & PAYMENT</div>
-      <h2>Доставка и оплата</h2>
-    </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">CATEGORIES</div>
+          <h2>Категории</h2>
+        </div>
 
-    <div class="info-grid">
-      <div class="info-card">
-        <h3>Как заказать</h3>
-        <p>Выбираешь товар, добавляешь в корзину, указываешь контакты и отправляешь заявку.</p>
+        <div class="category-grid">
+          <a class="category-card reveal" href="#catalog" data-category-link="Clothing">
+            <span>Clothing</span>
+            <strong>Одежда</strong>
+          </a>
+          <a class="category-card reveal" href="#catalog" data-category-link="Accessories">
+            <span>Accessories</span>
+            <strong>Аксессуары</strong>
+          </a>
+          <a class="category-card reveal" href="#featured">
+            <span>Featured</span>
+            <strong>Выделенные позиции</strong>
+          </a>
+          <a class="category-card reveal" href="#contacts">
+            <span>Contact</span>
+            <strong>Связаться с нами</strong>
+          </a>
+        </div>
       </div>
-      <div class="info-card">
-        <h3>Доставка</h3>
-        <p>По России и по согласованию в другие направления. Сроки уточняются после оформления.</p>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">FEATURED</div>
+          <h2>Выделенные позиции</h2>
+          <p>То, что особенно сильно смотрится в подаче ONYX SHOP.</p>
+        </div>
+
+        <div class="featured-grid" id="featuredGrid"></div>
       </div>
-      <div class="info-card">
-        <h3>Оплата</h3>
-        <p>Сейчас это демо-checkout. Дальше подключаем реальный backend и оплату.</p>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">CATALOG</div>
+          <h2>Каталог</h2>
+          <p>Твои реальные позиции, фильтры и нормальная корзина.</p>
+        </div>
+
+        <div class="search-panel" id="searchPanel">
+          <input type="text" id="searchInput" placeholder="Поиск по названию, описанию или категории..." />
+        </div>
+
+        <div class="catalog-toolbar reveal">
+          <div></div>
+          <div class="toolbar-right">
+            <select id="categoryFilter">
+              <option value="all">Все категории</option>
+              <option value="Clothing">Одежда</option>
+              <option value="Accessories">Аксессуары</option>
+            </select>
+
+            <select id="sortFilter">
+              <option value="default">По умолчанию</option>
+              <option value="price-asc">Цена: по возрастанию</option>
+              <option value="price-desc">Цена: по убыванию</option>
+              <option value="name-asc">Название: A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">FAQ</div>
-      <h2>Частые вопросы</h2>
-    </div>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="reveal">
+          <div class="eyebrow">ABOUT</div>
+          <h2>ONYX SHOP</h2>
+          <p>
+            ONYX SHOP — это не просто витрина. Это select store с упором на strong visual,
+            streetwear-подачу, интересные айтемы и аксессуары, которые выглядят дороже своей цены.
+          </p>
+          <p>
+            Здесь важны не только товары, но и то, как всё собрано: чистый интерфейс, удобный каталог,
+            нормальная корзина и адаптив под все устройства.
+          </p>
+        </div>
 
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>Как оформить заказ?</summary>
-        <p>Добавь товар в корзину, открой checkout, введи контакт и отправь заявку.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Можно ли узнать наличие?</summary>
-        <p>Да. Позже можно добавить статусы наличия и раздел “под заказ”.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Это уже рабочий сайт?</summary>
-        <p>Да, это рабочая витрина с корзиной. Следующий этап — подключение твоего backend и реальных фото.</p>
-      </details>
-    </div>
-  </div>
-</section>
+        <div class="about-stack">
+          <div class="about-card reveal">
+            <strong>Curated Style</strong>
+            <p>Подборка вещей в едином вайбе, без ощущения дешёвого маркетплейса.</p>
+          </div>
+          <div class="about-card reveal">
+            <strong>Statement Pieces</strong>
+            <p>Вещи, которые сразу выделяются и работают как акцент образа.</p>
+          </div>
+          <div class="about-card reveal">
+            <strong>Worldwide Delivery</strong>
+            <p>Отправка по миру со средним сроком доставки от 3 до 23 дней.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section" id="contacts">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">CONTACTS</div>
-      <h2>Связь</h2>
-    </div>
+    <section class="section" id="delivery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">DELIVERY & PAYMENT</div>
+          <h2>Доставка и оплата</h2>
+        </div>
 
-    <div class="contacts">
-      <a class="contact-card" href="https://t.me/onyxshopadmin" target="_blank">
-        <span>Telegram</span>
-        <strong>@onyxshopadmin</strong>
-      </a>
-      <a class="contact-card" href="https://instagram.com/onyxshop_inst" target="_blank">
-        <span>Instagram</span>
-        <strong>@onyxshop_inst</strong>
-      </a>
-      <a class="contact-card" href="https://www.tiktok.com/@onyx_zzz" target="_blank">
-        <span>TikTok</span>
-        <strong>@onyx_zzz</strong>
-      </a>
-    </div>
-  </div>
-</section>
-```
+        <div class="info-grid">
+          <div class="info-card reveal">
+            <h3>Как заказать</h3>
+            <p>Выбираешь товар, добавляешь в корзину, указываешь контакт и адрес, после чего отправляешь заказ.</p>
+          </div>
+          <div class="info-card reveal">
+            <h3>Доставка</h3>
+            <p>Работаем по всему миру. Средние сроки доставки — от 3 до 23 дней, в зависимости от страны и типа товара.</p>
+          </div>
+          <div class="info-card reveal">
+            <h3>Оплата</h3>
+            <p>После оформления заказа менеджер связывается с клиентом и подтверждает детали, наличие и оплату.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">FAQ</div>
+          <h2>Частые вопросы</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Как оформить заказ?</summary>
+            <p>Добавь товар в корзину, укажи контакт, адрес доставки и отправь заявку через checkout.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Куда вы доставляете?</summary>
+            <p>Мы доставляем по всему миру 🌍</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Какие сроки доставки?</summary>
+            <p>Обычно доставка занимает от 3 до 23 дней, в зависимости от страны, логистики и типа товара.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Как узнать наличие?</summary>
+            <p>Актуальные позиции выводятся на сайте. Если нужен точный апдейт, можно написать менеджеру в Telegram.</p>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Можно ли заказать за пределы России?</summary>
+            <p>Да. Сейчас доставка доступна не только по России, но и по другим странам.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">CONTACTS</div>
+          <h2>Связь</h2>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="https://t.me/onyxshopadmin" target="_blank" rel="noopener noreferrer">
+            <span>Telegram</span>
+            <strong>@onyxshopadmin</strong>
+          </a>
+          <a class="contact-card reveal" href="https://instagram.com/onyxshop_inst" target="_blank" rel="noopener noreferrer">
+            <span>Instagram</span>
+            <strong>@onyxshop_inst</strong>
+          </a>
+          <a class="contact-card reveal" href="https://www.tiktok.com/@onyx_zzz" target="_blank" rel="noopener noreferrer">
+            <span>TikTok</span>
+            <strong>@onyx_zzz</strong>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        <div class="logo" style="font-size:1.4rem">
+        <div class="footer-logo">
           <span>ONYX</span>
           <span>SHOP</span>
         </div>
-        <p>Streetwear / footwear / accessories.</p>
+        <p>Streetwear / accessories / worldwide shipping.</p>
       </div>
-      <div style="display:flex;gap:18px;flex-wrap:wrap">
+
+      <div class="footer-links">
         <a href="#catalog">Каталог</a>
+        <a href="#featured">Хиты</a>
         <a href="#about">О нас</a>
         <a href="#delivery">Доставка</a>
         <a href="#contacts">Контакты</a>
@@ -849,240 +1254,404 @@ h1{
     </div>
   </footer>
 
-  <aside class="drawer" id="drawer">
-    <div class="drawer-head">
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-head">
       <h3 style="margin:0">Корзина</h3>
-      <button class="ghost-btn" id="closeDrawer">Закрыть</button>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Закрыть">✕</button>
     </div>
 
-```
-<div class="drawer-body" id="cartItems"></div>
+    <div class="cart-body" id="cartItems"></div>
 
-<div class="drawer-foot">
-  <div class="total">
-    <span>Итого</span>
-    <strong id="cartTotal">0 ₽</strong>
-  </div>
+    <div class="cart-foot">
+      <div class="cart-total">
+        <span>Итого</span>
+        <strong id="cartTotal">0 ₽</strong>
+      </div>
 
-  <form class="checkout" id="checkoutForm">
-    <input type="text" id="name" placeholder="Имя" required />
-    <input type="text" id="contact" placeholder="Telegram или телефон" required />
-    <input type="text" id="address" placeholder="Адрес доставки" required />
-    <textarea id="comment" placeholder="Комментарий к заказу"></textarea>
-    <button type="submit" class="primary-btn">Оформить заказ</button>
-  </form>
-</div>
-```
-
+      <form class="checkout-form" id="checkoutForm">
+        <input type="text" id="customerName" placeholder="Имя" required />
+        <input type="text" id="customerContact" placeholder="Telegram или телефон" required />
+        <input type="text" id="customerAddress" placeholder="Адрес доставки" required />
+        <textarea id="customerComment" placeholder="Комментарий к заказу"></textarea>
+        <button type="submit" class="primary-btn">Оформить заказ</button>
+      </form>
+    </div>
   </aside>
 
-  <div class="overlay" id="overlay"></div>
   <div class="toast" id="toast"></div>
 
   <script>
     const products = [
-      { id:1, name:"Goyard Cardholder", brand:"Goyard", category:"Accessories", price:699, badge:"BESTSELLER", description:"Компактный картхолдер в фирменной select-подаче." },
-      { id:2, name:"Corteiz Hoodie", brand:"Corteiz", category:"Clothing", price:2990, badge:"NEW", description:"Худи в streetwear-вайбе с плотным силуэтом." },
-      { id:3, name:"MM6 x Salomon", brand:"MM6 x Salomon", category:"Footwear", price:7990, badge:"LIMITED", description:"Fashion-tech пара с сильным современным силуэтом." },
-      { id:4, name:"Essential Tee", brand:"ONYX SELECT", category:"Clothing", price:1490, badge:"DROP", description:"Чистая базовая футболка под layered-образ." },
-      { id:5, name:"Structured Bag", brand:"ONYX SELECT", category:"Accessories", price:3590, badge:"NEW", description:"Минималистичная сумка для daily use." },
-      { id:6, name:"Street Runner", brand:"ONYX SELECT", category:"Footwear", price:5490, badge:"HOT", description:"Универсальная пара для everyday streetwear." }
+      {
+        id: 1,
+        name: "Falcon Heritage Zip",
+        category: "Clothing",
+        price: 2999,
+        badge: "LIMITED",
+        description: "Редкий дизайн с историей и характером. Вышивка с восточным вайбом + премиальный минимализм.",
+        details: ["плотный хлопок", "premium вайб", "unique design"],
+        image: "images/falcon-heritage-zip.png"
+      },
+      {
+        id: 2,
+        name: "Triple Face Hoodie",
+        category: "Clothing",
+        price: 2999,
+        badge: "HOT",
+        description: "Грубый street-арт, который сразу цепляет. Контрастный принт + washed эффект.",
+        details: ["underground style", "плотная ткань", "oversized vibe"],
+        image: "images/triple-face-hoodie.png"
+      },
+      {
+        id: 3,
+        name: "Money Statement Hoodie",
+        category: "Clothing",
+        price: 2999,
+        badge: "NEW",
+        description: "Не просто худи — месседж. Чистый minimal + дерзкий принт.",
+        details: ["soft material", "universal color", "old money vibe"],
+        image: "images/money-statement-hoodie.png"
+      },
+      {
+        id: 4,
+        name: "Street Socks Set (5 pack)",
+        category: "Accessories",
+        price: 999,
+        badge: "SET",
+        description: "База, которая решает образ. 5 пар с разными принтами — под каждый день.",
+        details: ["5 пар", "must-have", "style details"],
+        image: "images/street-socks-set.png"
+      },
+      {
+        id: 5,
+        name: "Abstract Heat Hoodie",
+        category: "Clothing",
+        price: 2999,
+        badge: "STATEMENT",
+        description: "Яркий арт прямо на тебе. Выделяется из любой толпы.",
+        details: ["TikTok item", "яркий дизайн", "attention piece"],
+        image: "images/abstract-heat-hoodie.png"
+      },
+      {
+        id: 6,
+        name: "BLAST Hoodie",
+        category: "Clothing",
+        price: 2999,
+        badge: "DROP",
+        description: "Агрессивный принт + винтажный эффект. Чистый streetwear вайб.",
+        details: ["washed style", "dense cotton", "streetwear"],
+        image: "images/blast-hoodie.png"
+      },
+      {
+        id: 7,
+        name: "Marlboro Vintage Tee",
+        category: "Clothing",
+        price: 1499,
+        badge: "CLASSIC",
+        description: "Классика, которая не умирает. Простой дизайн, но цепляет сразу.",
+        details: ["light material", "vintage vibe", "base item"],
+        image: "images/marlboro-vintage-tee.png"
+      },
+      {
+        id: 8,
+        name: "Luxury Pattern Case",
+        category: "Accessories",
+        price: 999,
+        badge: "PREMIUM",
+        description: "Минимализм + дорогой вид. Текстура под премиум бренд, без лишнего.",
+        details: ["different colors", "anti-slip", "clean look"],
+        image: "images/luxury-pattern-case.png"
+      }
     ];
 
-    let cart = JSON.parse(localStorage.getItem("onyx_cart") || "[]");
+    let cart = JSON.parse(localStorage.getItem("onyx_cart")) || [];
 
     const featuredGrid = document.getElementById("featuredGrid");
     const productGrid = document.getElementById("productGrid");
-    const brandFilter = document.getElementById("brandFilter");
     const categoryFilter = document.getElementById("categoryFilter");
     const sortFilter = document.getElementById("sortFilter");
     const searchInput = document.getElementById("searchInput");
+    const toggleSearchBtn = document.getElementById("toggleSearchBtn");
+    const searchPanel = document.getElementById("searchPanel");
     const cartCount = document.getElementById("cartCount");
-    const drawer = document.getElementById("drawer");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const cartDrawer = document.getElementById("cartDrawer");
     const overlay = document.getElementById("overlay");
     const cartItems = document.getElementById("cartItems");
     const cartTotal = document.getElementById("cartTotal");
+    const checkoutForm = document.getElementById("checkoutForm");
     const toast = document.getElementById("toast");
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
 
-    function price(v){
-      return v.toLocaleString("ru-RU") + " ₽";
+    function formatPrice(value) {
+      return value.toLocaleString("ru-RU") + " ₽";
     }
 
-    function showToast(text){
+    function showToast(text) {
       toast.textContent = text;
       toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2200);
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
     }
 
-    function saveCart(){
+    function saveCart() {
       localStorage.setItem("onyx_cart", JSON.stringify(cart));
     }
 
-    function updateCartCount(){
-      const total = cart.reduce((s, i) => s + i.qty, 0);
-      cartCount.textContent = total;
+    function updateCartCount() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.textContent = totalQty;
     }
 
-    function openCart(){
-      drawer.classList.add("open");
+    function getCartTotal() {
+      return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    }
+
+    function openCart() {
+      cartDrawer.classList.add("open");
       overlay.classList.add("show");
+      cartDrawer.setAttribute("aria-hidden", "false");
     }
 
-    function closeCart(){
-      drawer.classList.remove("open");
+    function closeCart() {
+      cartDrawer.classList.remove("open");
       overlay.classList.remove("show");
+      cartDrawer.setAttribute("aria-hidden", "true");
     }
 
-    function cardHTML(product){
-      return \`
-        <article class="product">
-          <div class="product-media">
-            <div class="product-badge">\${product.badge}</div>
-          </div>
+    function makeImageHTML(product, size = "product") {
+      const imgClass = size === "cart" ? "cart-thumb" : "product-media";
+      return `
+        <div class="${imgClass}">
+          <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')" />
+          ${size === "product" ? `<div class="product-badge">${product.badge}</div>` : ""}
+        </div>
+      `;
+    }
+
+    function makeProductCard(product) {
+      const detailsHTML = product.details
+        .slice(0, 3)
+        .map(detail => `<span class="chip">${detail}</span>`)
+        .join("");
+
+      return `
+        <article class="product-card reveal">
+          ${makeImageHTML(product, "product")}
           <div class="product-body">
-            <div class="meta">\${product.brand} · \${product.category}</div>
-            <h3>\${product.name}</h3>
-            <p class="desc">\${product.description}</p>
+            <div class="product-meta">${product.category}</div>
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-desc">${product.description}</p>
+            <div class="product-details">${detailsHTML}</div>
             <div class="product-bottom">
-              <strong>\${price(product.price)}</strong>
-              <button class="primary-btn" onclick="addToCart(\${product.id})">В корзину</button>
+              <div class="price-row">
+                <strong class="product-price">${formatPrice(product.price)}</strong>
+              </div>
+              <div class="product-actions">
+                <button class="secondary-btn" onclick="quickView(${product.id})">Подробнее</button>
+                <button class="primary-btn" onclick="addToCart(${product.id})">В корзину</button>
+              </div>
             </div>
           </div>
         </article>
-      \`;
+      `;
     }
 
-    function renderFeatured(){
-      featuredGrid.innerHTML = products.slice(0,3).map(cardHTML).join("");
+    function renderFeatured() {
+      const featuredProducts = [products[0], products[1], products[5]];
+      featuredGrid.innerHTML = featuredProducts.map(makeProductCard).join("");
+      applyReveal();
     }
 
-    function getFilteredProducts(){
+    function getFilteredProducts() {
       const search = searchInput.value.trim().toLowerCase();
-      const cat = categoryFilter.value;
-      const brand = brandFilter.value;
+      const category = categoryFilter.value;
       const sort = sortFilter.value;
 
-      let list = products.filter(p => {
-        const okSearch =
-          p.name.toLowerCase().includes(search) ||
-          p.brand.toLowerCase().includes(search) ||
-          p.category.toLowerCase().includes(search);
+      let filtered = products.filter(product => {
+        const matchesSearch =
+          product.name.toLowerCase().includes(search) ||
+          product.description.toLowerCase().includes(search) ||
+          product.category.toLowerCase().includes(search);
 
-        const okCat = cat === "all" || p.category === cat;
-        const okBrand = brand === "all" || p.brand === brand;
-
-        return okSearch && okCat && okBrand;
+        const matchesCategory = category === "all" || product.category === category;
+        return matchesSearch && matchesCategory;
       });
 
-      if(sort === "price-asc") list.sort((a,b) => a.price - b.price);
-      if(sort === "price-desc") list.sort((a,b) => b.price - a.price);
-      if(sort === "name-asc") list.sort((a,b) => a.name.localeCompare(b.name));
+      if (sort === "price-asc") filtered.sort((a, b) => a.price - b.price);
+      if (sort === "price-desc") filtered.sort((a, b) => b.price - a.price);
+      if (sort === "name-asc") filtered.sort((a, b) => a.name.localeCompare(b.name));
 
-      return list;
+      return filtered;
     }
 
-    function renderProducts(){
+    function renderProducts() {
       const filtered = getFilteredProducts();
-      if(!filtered.length){
-        productGrid.innerHTML = '<div class="empty">Ничего не найдено. Попробуй другие фильтры.</div>';
+
+      if (!filtered.length) {
+        productGrid.innerHTML = `<div class="empty-state">Ничего не найдено. Попробуй другие фильтры.</div>`;
         return;
       }
-      productGrid.innerHTML = filtered.map(cardHTML).join("");
+
+      productGrid.innerHTML = filtered.map(makeProductCard).join("");
+      applyReveal();
     }
 
-    function fillBrands(){
-      const brands = [...new Set(products.map(p => p.brand))];
-      brands.forEach(brand => {
-        const option = document.createElement("option");
-        option.value = brand;
-        option.textContent = brand;
-        brandFilter.appendChild(option);
-      });
-    }
-
-    function addToCart(id){
-      const existing = cart.find(x => x.id === id);
-      if(existing){
+    function addToCart(productId) {
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
         existing.qty += 1;
       } else {
-        const p = products.find(x => x.id === id);
-        cart.push({...p, qty:1});
+        const product = products.find(product => product.id === productId);
+        cart.push({ ...product, qty: 1 });
       }
+
       renderCart();
-      showToast("Товар добавлен в корзину");
       openCart();
+      showToast("Товар добавлен в корзину");
     }
 
-    function changeQty(id, type){
-      const item = cart.find(x => x.id === id);
-      if(!item) return;
-      if(type === "plus") item.qty += 1;
-      if(type === "minus") item.qty -= 1;
-      cart = cart.filter(x => x.qty > 0);
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      renderCart();
+      showToast("Товар удалён");
+    }
+
+    function changeQty(productId, action) {
+      const item = cart.find(item => item.id === productId);
+      if (!item) return;
+
+      if (action === "plus") item.qty += 1;
+      if (action === "minus") item.qty -= 1;
+
+      cart = cart.filter(item => item.qty > 0);
       renderCart();
     }
 
-    function renderCart(){
-      if(!cart.length){
-        cartItems.innerHTML = '<div class="empty">Корзина пока пустая.</div>';
-        cartTotal.textContent = price(0);
+    function renderCart() {
+      if (!cart.length) {
+        cartItems.innerHTML = `<div class="empty-state">Корзина пока пустая.</div>`;
+        cartTotal.textContent = formatPrice(0);
         updateCartCount();
         saveCart();
         return;
       }
 
-      cartItems.innerHTML = cart.map(item => \`
+      cartItems.innerHTML = cart.map(item => `
         <div class="cart-item">
+          ${makeImageHTML(item, "cart")}
           <div>
-            <strong>\${item.name}</strong>
-            <small>\${item.brand} · \${item.category}</small>
-            <small>\${price(item.price)}</small>
+            <strong>${item.name}</strong>
+            <small>${item.category}</small>
+            <small>${formatPrice(item.price)}</small>
           </div>
-          <div class="qty">
-            <button onclick="changeQty(\${item.id}, 'minus')">−</button>
-            <span>\${item.qty}</span>
-            <button onclick="changeQty(\${item.id}, 'plus')">+</button>
+          <div class="cart-actions">
+            <div class="qty-group">
+              <button class="qty-btn" onclick="changeQty(${item.id}, 'minus')">−</button>
+              <span>${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${item.id}, 'plus')">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${item.id})">Удалить</button>
           </div>
         </div>
-      \`).join("");
+      `).join("");
 
-      cartTotal.textContent = price(cart.reduce((s, i) => s + i.price * i.qty, 0));
+      cartTotal.textContent = formatPrice(getCartTotal());
       updateCartCount();
       saveCart();
     }
 
-    function setCategory(category){
-      categoryFilter.value = category;
-      renderProducts();
+    function quickView(productId) {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
+
+      const detailsText = product.details.join(" • ");
+      showToast(product.name + " — " + detailsText);
     }
+
+    function applyReveal() {
+      const items = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach(item => observer.observe(item));
+    }
+
+    document.querySelectorAll("[data-category-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        const value = link.getAttribute("data-category-link");
+        categoryFilter.value = value;
+        renderProducts();
+      });
+    });
+
+    toggleSearchBtn.addEventListener("click", () => {
+      searchPanel.classList.toggle("show");
+      if (searchPanel.classList.contains("show")) {
+        document.getElementById("catalog").scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => searchInput.focus(), 200);
+      }
+    });
+
+    openCartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    overlay.addEventListener("click", closeCart);
+
+    burger.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
 
     searchInput.addEventListener("input", renderProducts);
     categoryFilter.addEventListener("change", renderProducts);
-    brandFilter.addEventListener("change", renderProducts);
     sortFilter.addEventListener("change", renderProducts);
 
-    document.getElementById("cartOpenBtn").addEventListener("click", openCart);
-    document.getElementById("closeDrawer").addEventListener("click", closeCart);
-    overlay.addEventListener("click", closeCart);
+    checkoutForm.addEventListener("submit", event => {
+      event.preventDefault();
 
-    document.getElementById("checkoutForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      if(!cart.length){
+      if (!cart.length) {
         showToast("Корзина пустая");
         return;
       }
-      showToast("Демо-заказ отправлен");
-      this.reset();
+
+      const customerName = document.getElementById("customerName").value.trim();
+      const customerContact = document.getElementById("customerContact").value.trim();
+      const customerAddress = document.getElementById("customerAddress").value.trim();
+      const customerComment = document.getElementById("customerComment").value.trim();
+
+      if (!customerName || !customerContact || !customerAddress) {
+        showToast("Заполни обязательные поля");
+        return;
+      }
+
+      console.log("ORDER", {
+        items: cart,
+        total: getCartTotal(),
+        customerName,
+        customerContact,
+        customerAddress,
+        customerComment
+      });
+
+      showToast("Заказ отправлен");
+      checkoutForm.reset();
       cart = [];
       renderCart();
-      setTimeout(closeCart, 400);
+      setTimeout(closeCart, 500);
     });
 
-    fillBrands();
     renderFeatured();
     renderProducts();
     renderCart();
+    applyReveal();
   </script>
-
 </body>
 </html>
