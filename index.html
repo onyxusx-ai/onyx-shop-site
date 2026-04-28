@@ -403,6 +403,13 @@
     .gallery-thumb.active, .gallery-thumb:hover { opacity: 1; border-color: rgba(255,90,31,.55); }
     .gallery-thumb img { width: 100%; height: 100%; object-fit: contain; }
 
+
+    .checkout-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -746,7 +753,7 @@
         <input type="text" id="customerContact" placeholder="Telegram или телефон" required />
         <input type="text" id="customerAddress" placeholder="Адрес доставки" required />
         <textarea id="customerComment" placeholder="Комментарий к заказу"></textarea>
-        <button type="submit" class="primary-btn">Оформить заказ</button>
+        <button type="submit" class="primary-btn checkout-submit-btn" id="checkoutSubmitBtn">Оформить заказ</button>
       </form>
     </div>
   </aside>
@@ -1086,6 +1093,7 @@
     let selectedSize = null;
     let selectedColor = null;
     let selectedModel = null;
+    let isOrdering = false;
 
     const featuredGrid = document.getElementById("featuredGrid");
     const productGrid = document.getElementById("productGrid");
@@ -1189,7 +1197,7 @@
       const className = size === "cart" ? "cart-thumb" : "product-media";
       return `
         <div class="${className}">
-          <img src="${firstImage}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')" />
+          <img src="${firstImage}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')" />
           ${size === "product" ? `<div class="product-badge">${product.badge}</div>` : ""}
         </div>
       `;
@@ -1276,12 +1284,12 @@
       modalMedia.innerHTML = `
         <div class="gallery">
           <div class="gallery-main">
-            <img src="${mainImage}" alt="${product.name}" onerror="this.style.display='none'" />
+            <img src="${mainImage}" alt="${product.name}" loading="eager" decoding="async" onerror="this.style.display='none'" />
           </div>
           <div class="gallery-thumbs">
             ${images.map((image, index) => `
               <button class="gallery-thumb ${index === currentGalleryIndex ? "active" : ""}" type="button" data-gallery-index="${index}">
-                <img src="${image}" alt="${product.name} ${index + 1}" onerror="this.style.display='none'" />
+                <img src="${image}" alt="${product.name} ${index + 1}" loading="lazy" decoding="async" onerror="this.style.display='none'" />
               </button>
             `).join("")}
           </div>
@@ -1407,7 +1415,7 @@
         return `
           <div class="cart-item">
             <div class="cart-thumb">
-              <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'" />
+              <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async" onerror="this.style.display='none'" />
             </div>
             <div>
               <strong>${item.name}</strong>
@@ -1511,6 +1519,11 @@
     checkoutForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
+      if (isOrdering) {
+        showToast("Заказ уже отправляется");
+        return;
+      }
+
       if (!cart.length) {
         showToast("Корзина пустая");
         return;
@@ -1520,6 +1533,7 @@
       const customerContact = document.getElementById("customerContact").value.trim();
       const customerAddress = document.getElementById("customerAddress").value.trim();
       const customerComment = document.getElementById("customerComment").value.trim();
+      const submitBtn = document.getElementById("checkoutSubmitBtn") || checkoutForm.querySelector("button[type='submit']");
 
       if (!customerName || !customerContact || !customerAddress) {
         showToast("Заполни обязательные поля");
@@ -1528,10 +1542,12 @@
 
       const payload = {
         source: "САЙТ",
+        orderId: "ONYX-" + Date.now(),
         items: cart.map(item => ({
           name: item.name,
           size: item.size || "Не указан",
           color: item.model ? `${item.color || "Не указан"} | ${item.model}` : (item.color || "Не указан"),
+          model: item.model || "",
           qty: item.qty,
           priceRub: item.price
         })),
@@ -1542,15 +1558,29 @@
       };
 
       try {
+        isOrdering = true;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Отправка...";
+          submitBtn.style.opacity = "0.65";
+          submitBtn.style.cursor = "not-allowed";
+        }
+
         const response = await fetch(`${API_BASE}/api/order`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        let data = {};
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+          data = {};
+        }
 
-        if (!response.ok || !data.ok) {
+        if (!response.ok || data.ok === false) {
           throw new Error("Ошибка отправки заказа");
         }
 
@@ -1559,10 +1589,21 @@
         cart = [];
         renderCart();
 
-        setTimeout(() => closeCart(), 500);
+        setTimeout(() => {
+          closeCart();
+        }, 500);
       } catch (error) {
         console.error(error);
         showToast("Не удалось отправить заказ");
+      } finally {
+        isOrdering = false;
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Оформить заказ";
+          submitBtn.style.opacity = "1";
+          submitBtn.style.cursor = "pointer";
+        }
       }
     });
 
