@@ -155,8 +155,9 @@
       display: flex; flex-direction: column; justify-content: flex-end;
       position: relative; overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.36)),
-        url("logo.PNG") center/cover no-repeat;
+        radial-gradient(circle at 28% 22%, rgba(225,42,0,.22), transparent 28%),
+        radial-gradient(circle at 80% 78%, rgba(255,90,31,.10), transparent 24%),
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
     }
     .hero-card::before {
       content: ""; position: absolute; inset: 18px; border-radius: 24px;
@@ -565,6 +566,84 @@
       }
     }
 
+
+    .clean-logo {
+      min-width: 154px;
+      padding: 9px 13px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,90,31,.20);
+      box-shadow: 0 14px 36px rgba(0,0,0,.22);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0;
+    }
+
+    .clean-logo-main {
+      font-weight: 950;
+      font-size: 1.18rem;
+      letter-spacing: -.06em;
+      color: #fff;
+      text-shadow: 0 0 22px rgba(225,42,0,.18);
+    }
+
+    .clean-logo-line {
+      width: 1px;
+      height: 22px;
+      background: linear-gradient(180deg, transparent, rgba(255,90,31,.7), transparent);
+    }
+
+    .clean-logo-sub {
+      font-weight: 850;
+      font-size: .88rem;
+      letter-spacing: .18em;
+      color: #ff5a1f;
+    }
+
+    .hero-card {
+      min-height: 500px;
+    }
+
+    .hero-card::before {
+      background:
+        linear-gradient(90deg, transparent 0 48%, rgba(255,255,255,.05) 49% 51%, transparent 52%),
+        linear-gradient(0deg, transparent 0 48%, rgba(255,255,255,.035) 49% 51%, transparent 52%);
+      opacity: .55;
+    }
+
+    .hero-card::after {
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,90,31,.20), transparent 28%),
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.36));
+    }
+
+    .hero-card .hero-badge {
+      background: rgba(0,0,0,.28);
+    }
+
+    .hero-card h3 {
+      max-width: 520px;
+    }
+
+    .product-media {
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,.055), transparent 28%),
+        linear-gradient(145deg, #111, #070707);
+    }
+
+    .product-media img {
+      padding: 18px;
+    }
+
+    .gallery-main img {
+      padding: 14px;
+    }
+
+    .product-card {
+      backdrop-filter: blur(14px);
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -608,12 +687,10 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#top" class="brand-wordmark" id="top" aria-label="ONYXSHOP">
-        <span class="brand-mark">OX</span>
-        <span class="brand-text">
-          <span class="brand-text-main">ONYXSHOP</span>
-          <span class="brand-text-sub">select store</span>
-        </span>
+      <a href="#top" class="brand-wordmark clean-logo" id="top" aria-label="ONYXSHOP">
+        <span class="clean-logo-main">ONYX</span>
+        <span class="clean-logo-line"></span>
+        <span class="clean-logo-sub">SHOP</span>
       </a>
 
       <nav class="nav" id="nav">
@@ -761,7 +838,7 @@
         <div class="section-head reveal">
           <div class="eyebrow">FEATURED</div>
           <h2>Выделенные позиции</h2>
-          <p>То, что особенно сильно выглядит в подаче ONYX SHOP.</p>
+          <p>Falcon Zip, Goyard Case и Marlboro Tee — главные позиции для витрины.</p>
         </div>
 
         <div class="featured-grid" id="featuredGrid"></div>
@@ -1041,6 +1118,44 @@
 
   <script>
     const API_BASE = "https://onyx-shop-backend.onrender.com";
+
+    const imageFallbacks = {
+      "falcon-heritage-zip.PNG": ["falcon-heritage-zip.png","images/falcon-heritage-zip.PNG","images/falcon-heritage-zip.png"],
+      "triple-face-hoodie.PNG": ["triple-face-hoodie.png","images/triple-face-hoodie.PNG","images/triple-face-hoodie.png"],
+      "money-statement-hoodie.PNG": ["money-statement-hoodie.png","images/money-statement-hoodie.PNG","images/money-statement-hoodie.png"],
+      "street-socks-set.PNG": ["street-socks-set.png","images/street-socks-set.PNG","images/street-socks-set.png"],
+      "abstract-heat-hoodie.PNG": ["abstract-heat-hoodie.png","images/abstract-heat-hoodie.PNG","images/abstract-heat-hoodie.png"],
+      "blast-hoodie.PNG": ["blast-hoodie.png","images/blast-hoodie.PNG","images/blast-hoodie.png"],
+      "marlboro-vintage-tee.PNG": ["marlboro-vintage-tee.png","images/marlboro-vintage-tee.PNG","images/marlboro-vintage-tee.png"],
+      "luxury-pattern-case.PNG": ["luxury-pattern-case.png","images/luxury-pattern-case.PNG","images/luxury-pattern-case.png"],
+      "g-cardholder.PNG": ["g-cardholder.png","images/g-cardholder.PNG","images/g-cardholder.png"],
+      "mm6.PNG": ["mm6.png","images/mm6.PNG","images/mm6.png"],
+      "replica.PNG": ["replica.png","images/replica.PNG","images/replica.png"],
+      "f11.PNG": ["f11.png","images/f11.PNG","images/f11.png"],
+      "stussy1.PNG": ["stussy1.png","images/stussy1.PNG","images/stussy1.png"],
+      "corteiz-hood.PNG": ["corteiz-hood.png","images/corteiz-hood.PNG","images/corteiz-hood.png"],
+      "cortezts.png": ["cortezts.PNG","images/cortezts.png","images/cortezts.PNG"],
+      "cortezts-2.png": ["cortezts-2.PNG","images/cortezts-2.png","images/cortezts-2.PNG"],
+      "cortezts-3.png": ["cortezts-3.PNG","images/cortezts-3.png","images/cortezts-3.PNG"]
+    };
+
+    function handleImageError(img) {
+      const current = img.getAttribute("src");
+      const tried = img.dataset.tried ? img.dataset.tried.split("|") : [];
+      const candidates = imageFallbacks[current] || imageFallbacks[current?.replace("images/","")] || [];
+
+      const next = candidates.find(candidate => !tried.includes(candidate) && candidate !== current);
+
+      if (next) {
+        img.dataset.tried = [...tried, current, next].filter(Boolean).join("|");
+        img.src = next;
+        return;
+      }
+
+      img.style.display = "none";
+      if (img.parentElement) img.parentElement.classList.add("no-image");
+    }
+
     const iphoneModels = [
       "iPhone 8","iPhone X","iPhone XR","iPhone XS Max",
       "iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max",
@@ -1438,7 +1553,7 @@
       const className = size === "cart" ? "cart-thumb" : "product-media";
       return `
         <div class="${className}">
-          <img src="${firstImage}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.classList.add('no-image')" />
+          <img src="${firstImage}" alt="${product.name}" loading="lazy" decoding="async" onerror="handleImageError(this)" />
           ${size === "product" ? `<div class="product-badge">${product.badge}</div>` : ""}
         </div>
       `;
@@ -1471,7 +1586,7 @@
     }
 
     function renderFeatured() {
-      const featuredProducts = [9, 10, 12, 15, 16, 18]
+      const featuredProducts = [1, 8, 7]
         .map(id => products.find(p => p.id === id))
         .filter(Boolean)
         .slice(0, 3);
@@ -1531,12 +1646,12 @@
       modalMedia.innerHTML = `
         <div class="gallery">
           <div class="gallery-main">
-            <img src="${mainImage}" alt="${product.name}" loading="eager" decoding="async" onerror="this.style.display='none'" />
+            <img src="${mainImage}" alt="${product.name}" loading="eager" decoding="async" onerror="handleImageError(this)" />
           </div>
           <div class="gallery-thumbs">
             ${images.map((image, index) => `
               <button class="gallery-thumb ${index === currentGalleryIndex ? "active" : ""}" type="button" data-gallery-index="${index}">
-                <img src="${image}" alt="${product.name} ${index + 1}" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <img src="${image}" alt="${product.name} ${index + 1}" loading="lazy" decoding="async" onerror="handleImageError(this)" />
               </button>
             `).join("")}
           </div>
@@ -1662,7 +1777,7 @@
         return `
           <div class="cart-item">
             <div class="cart-thumb">
-              <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+              <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async" onerror="handleImageError(this)" />
             </div>
             <div>
               <strong>${item.name}</strong>
