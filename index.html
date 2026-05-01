@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONYX SHOP — Streetwear Select Store</title>
-  <meta name="description" content="ONYX SHOP — streetwear, select clothing, footwear, accessories, worldwide shipping." />
+  <title>ONYXSHOP — Streetwear, одежда, обувь и аксессуары</title>
+  <meta name="description" content="ONYXSHOP — streetwear select store: худи, футболки, лонгсливы, куртки, джинсы, кроссовки, аксессуары, чехлы и картхолдеры. Доставка по всему миру 3–23 дня." />
+  <meta name="keywords" content="ONYXSHOP, ONYX SHOP, streetwear, худи, футболки, кроссовки, аксессуары, одежда, доставка по миру" />
+  <meta property="og:title" content="ONYXSHOP — Streetwear Select Store" />
+  <meta property="og:description" content="Одежда, обувь и аксессуары в streetwear-эстетике. Доставка по всему миру." />
+  <meta property="og:type" content="website" />
   <style>
     :root {
       --bg: #050505;
@@ -410,6 +414,157 @@
       transform: none;
     }
 
+
+    .brand-wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,90,31,.22);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        radial-gradient(circle at 20% 20%, rgba(225,42,0,.22), transparent 35%);
+      box-shadow: 0 18px 50px rgba(225,42,0,.12);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      box-shadow: 0 10px 30px rgba(225,42,0,.28);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: .86;
+    }
+
+    .brand-text-main {
+      font-weight: 950;
+      font-size: 1.25rem;
+      letter-spacing: -.08em;
+      background: linear-gradient(180deg, #fff 0%, #ff7a45 48%, #e12a00 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .brand-text-sub {
+      margin-top: 3px;
+      color: rgba(255,255,255,.62);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .quick-collections {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .quick-card {
+      border-radius: 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      color: #fff;
+      cursor: pointer;
+      transition: transform .25s ease, border-color .25s ease;
+      min-height: 124px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,90,31,.35);
+    }
+
+    .quick-card span {
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .quick-card strong {
+      font-size: 1.15rem;
+      letter-spacing: -.04em;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .trust-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+    }
+
+    .trust-item strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .product-type-label {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(225,42,0,.12);
+      color: #ff9b78;
+      font-size: .76rem;
+      border: 1px solid rgba(225,42,0,.18);
+    }
+
+    @media (max-width: 900px) {
+      .quick-collections,
+      .trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .quick-collections,
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-wordmark {
+        padding: 7px 9px;
+      }
+
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+      }
+
+      .brand-text-main {
+        font-size: 1.05rem;
+      }
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -453,14 +608,18 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#top" class="logo" id="top" aria-label="ONYX SHOP">
-        <span class="logo-top">ONYX</span>
-        <span class="logo-bottom">SHOP</span>
+      <a href="#top" class="brand-wordmark" id="top" aria-label="ONYXSHOP">
+        <span class="brand-mark">OX</span>
+        <span class="brand-text">
+          <span class="brand-text-main">ONYXSHOP</span>
+          <span class="brand-text-sub">select store</span>
+        </span>
       </a>
 
       <nav class="nav" id="nav">
         <a href="#catalog">Каталог</a>
         <a href="#featured">Хиты</a>
+        <a href="#collections">Подборки</a>
         <a href="#about">О нас</a>
         <a href="#delivery">Доставка</a>
         <a href="#faq">FAQ</a>
@@ -528,22 +687,71 @@
         </div>
 
         <div class="category-grid">
-          <a class="category-card reveal" href="#catalog" data-category-link="Clothing">
-            <span>Clothing</span>
-            <strong>Одежда</strong>
+          <a class="category-card reveal" href="#catalog" data-type-link="Hoodie">
+            <span>Hoodies</span>
+            <strong>Худи</strong>
           </a>
-          <a class="category-card reveal" href="#catalog" data-category-link="Footwear">
-            <span>Footwear</span>
-            <strong>Обувь</strong>
+          <a class="category-card reveal" href="#catalog" data-type-link="T-shirt">
+            <span>T-Shirts</span>
+            <strong>Футболки</strong>
           </a>
-          <a class="category-card reveal" href="#catalog" data-category-link="Accessories">
-            <span>Accessories</span>
-            <strong>Аксессуары</strong>
+          <a class="category-card reveal" href="#catalog" data-type-link="Jacket">
+            <span>Jackets</span>
+            <strong>Куртки</strong>
           </a>
-          <a class="category-card reveal" href="#featured">
-            <span>Featured</span>
-            <strong>Выделенные позиции</strong>
+          <a class="category-card reveal" href="#catalog" data-type-link="Jeans">
+            <span>Pants / Jeans</span>
+            <strong>Джинсы</strong>
           </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="collections">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">COLLECTIONS</div>
+          <h2>Подборки</h2>
+          <p>Быстрый вход в нужный вайб: новые позиции, хиты, limited и товары до 3000 ₽.</p>
+        </div>
+
+        <div class="quick-collections reveal">
+          <button class="quick-card" type="button" data-collection="new">
+            <span>New Drop</span>
+            <strong>Новые позиции</strong>
+          </button>
+          <button class="quick-card" type="button" data-collection="best">
+            <span>Best Sellers</span>
+            <strong>Самое ходовое</strong>
+          </button>
+          <button class="quick-card" type="button" data-collection="limited">
+            <span>Limited</span>
+            <strong>Редкие айтемы</strong>
+          </button>
+          <button class="quick-card" type="button" data-collection="under3000">
+            <span>Under 3000 ₽</span>
+            <strong>До 3000 ₽</strong>
+          </button>
+        </div>
+
+        <div class="trust-strip reveal">
+          <div class="trust-item">
+            <strong>🌍 Worldwide</strong>
+            <span>Доставка по всему миру</span>
+          </div>
+          <div class="trust-item">
+            <strong>✈ 3–23 дня</strong>
+            <span>Средние сроки доставки</span>
+          </div>
+          <div class="trust-item">
+            <strong>📦 Проверка</strong>
+            <span>Перед отправкой</span>
+          </div>
+          <div class="trust-item">
+            <strong>💬 Telegram</strong>
+            <span>Поддержка и подтверждение</span>
+          </div>
         </div>
       </div>
     </section>
@@ -580,6 +788,19 @@
               <option value="Clothing">Одежда</option>
               <option value="Footwear">Обувь</option>
               <option value="Accessories">Аксессуары</option>
+            </select>
+
+            <select id="typeFilter">
+              <option value="all">Все виды</option>
+              <option value="Hoodie">Худи</option>
+              <option value="T-shirt">Футболки</option>
+              <option value="Longsleeve">Лонгсливы</option>
+              <option value="Jacket">Куртки</option>
+              <option value="Jeans">Джинсы</option>
+              <option value="Sneakers">Кроссовки</option>
+              <option value="Case">Чехлы</option>
+              <option value="Cardholder">Картхолдеры</option>
+              <option value="Socks">Носки</option>
             </select>
 
             <select id="sortFilter">
@@ -716,8 +937,7 @@
     <div class="container footer-inner">
       <div>
         <div class="footer-logo">
-          <span>ONYX</span>
-          <span>SHOP</span>
+          <span>ONYXSHOP</span>
         </div>
         <p>Streetwear / footwear / accessories / worldwide shipping.</p>
       </div>
@@ -725,6 +945,7 @@
       <div class="footer-links">
         <a href="#catalog">Каталог</a>
         <a href="#featured">Хиты</a>
+        <a href="#collections">Подборки</a>
         <a href="#about">О нас</a>
         <a href="#delivery">Доставка</a>
         <a href="#contacts">Контакты</a>
@@ -836,6 +1057,7 @@
         id: 1,
         name: "Falcon Heritage Zip",
         category: "Clothing",
+        type: "Jacket",
         price: 2999,
         badge: "LIMITED",
         description: "Редкий дизайн с историей и характером. Вышивка с восточным вайбом + премиальный минимализм.",
@@ -849,6 +1071,7 @@
         id: 2,
         name: "Triple Face Hoodie",
         category: "Clothing",
+        type: "Hoodie",
         price: 2999,
         badge: "HOT",
         description: "Грубый street-арт, который сразу цепляет. Контрастный принт + washed эффект.",
@@ -862,6 +1085,7 @@
         id: 3,
         name: "Money Statement Hoodie",
         category: "Clothing",
+        type: "Hoodie",
         price: 2999,
         badge: "NEW",
         description: "Не просто худи — месседж. Чистый minimal + дерзкий принт.",
@@ -875,6 +1099,7 @@
         id: 4,
         name: "Street Socks Set (5 pack)",
         category: "Accessories",
+        type: "Socks",
         price: 999,
         badge: "SET",
         description: "База, которая решает образ. 5 пар с разными принтами — под каждый день.",
@@ -887,6 +1112,7 @@
         id: 5,
         name: "Abstract Heat Hoodie",
         category: "Clothing",
+        type: "Hoodie",
         price: 2999,
         badge: "STATEMENT",
         description: "Яркий арт прямо на тебе. Выделяется из любой толпы.",
@@ -900,6 +1126,7 @@
         id: 6,
         name: "BLAST Hoodie",
         category: "Clothing",
+        type: "Hoodie",
         price: 2999,
         badge: "DROP",
         description: "Агрессивный принт + винтажный эффект. Чистый streetwear вайб.",
@@ -913,6 +1140,7 @@
         id: 7,
         name: "Marlboro Vintage Tee",
         category: "Clothing",
+        type: "T-shirt",
         price: 1499,
         badge: "CLASSIC",
         description: "Классика, которая не умирает. Простой дизайн, но цепляет сразу.",
@@ -926,6 +1154,7 @@
         id: 8,
         name: "Goyard Case",
         category: "Accessories",
+        type: "Case",
         price: 999,
         badge: "PREMIUM",
         description: "Минимализм + дорогой вид. Текстура под премиум бренд, без лишнего.",
@@ -940,6 +1169,7 @@
         id: 9,
         name: "Goyard Cardholder",
         category: "Accessories",
+        type: "Cardholder",
         price: 799,
         badge: "MUST-HAVE",
         description: "Минимализм + дорогой стиль. Лёгкий, компактный, идеально под карты и наличку.",
@@ -953,6 +1183,7 @@
         id: 10,
         name: "Maison Margiela x Salomon Sneakers",
         category: "Footwear",
+        type: "Sneakers",
         price: 8999,
         badge: "TOP COLLAB",
         description: "Топ коллаб, который сейчас носят все, кто в теме. Футуристичный дизайн + максимальный комфорт.",
@@ -966,6 +1197,7 @@
         id: 11,
         name: "Maison Margiela Replica Sneakers",
         category: "Footwear",
+        type: "Sneakers",
         price: 8199,
         badge: "TIMELESS",
         description: "Чистая классика без лишнего. Идеально под любой образ: от casual до old money.",
@@ -980,6 +1212,7 @@
         id: 12,
         name: "F1 Racing Jacket",
         category: "Clothing",
+        type: "Jacket",
         price: 3999,
         badge: "RACING",
         description: "Гоночный стиль, который всегда привлекает внимание. Яркие детали + плотный материал.",
@@ -993,6 +1226,7 @@
         id: 13,
         name: "Stussy Tee",
         category: "Clothing",
+        type: "T-shirt",
         price: 1499,
         badge: "STREETWEAR",
         description: "Чистый streetwear. Минимализм + узнаваемый стиль.",
@@ -1006,6 +1240,7 @@
         id: 14,
         name: "Corteiz Hoodie",
         category: "Clothing",
+        type: "Hoodie",
         price: 2999,
         badge: "HYPE",
         description: "Один из самых хайповых брендов сейчас. Минимализм + уличный характер.",
@@ -1019,6 +1254,7 @@
         id: 15,
         name: "Baggy Vintage Jeans",
         category: "Clothing",
+        type: "Jeans",
         price: 2599,
         badge: "TREND 2026",
         description: "Свободный силуэт + винтажная текстура. Трендовый baggy фит, который сейчас везде. Сидят свободно, не сковывают — идеально под худи и кроссы.",
@@ -1033,6 +1269,7 @@
         id: 16,
         name: "Samurai Jacket",
         category: "Clothing",
+        type: "Jacket",
         price: 5699,
         badge: "ART DESIGN",
         description: "Сильный арт-дизайн с японским вайбом. Принт, который сразу цепляет и выделяет. Идеально под streetwear и minimal стиль.",
@@ -1047,6 +1284,7 @@
         id: 17,
         name: "Cold Culture Longsleeve",
         category: "Clothing",
+        type: "Longsleeve",
         price: 2999,
         badge: "STREETWEAR",
         description: "Минимализм + уличный характер. Крупный принт на спине — делает образ. Актуальный бренд, который сейчас набирает.",
@@ -1061,6 +1299,7 @@
         id: 18,
         name: "Maison Margiela Tee",
         category: "Clothing",
+        type: "T-shirt",
         price: 1499,
         badge: "PREMIUM BASE",
         description: "Минимализм + концептуальный дизайн. База, которая выглядит дороже своей цены. Подходит под любой стиль.",
@@ -1075,6 +1314,7 @@
         id: 19,
         name: "Corteiz T-shirt",
         category: "Clothing",
+        type: "T-shirt",
         price: 1499,
         badge: "Streetwear",
         description: "Один из самых хайповых брендов сейчас. Минимализм + уличный характер.",
@@ -1082,7 +1322,7 @@
         fitFor: ["нужна база под каждый день","любишь streetwear","хочешь свободную посадку"],
         stock: 15,
         images: ["cortezts.png","cortezts-2.png","cortezts-3.png"],
-        colors: ["Белый","Чёрный","Зеленый"],
+        colors: ["Белый","Чёрный"],
         sizes: ["S (44-46)","M (46-48)","L (48-50)","XL (50-52)","2XL (52-54)"]
       }
     ];
@@ -1098,6 +1338,7 @@
     const featuredGrid = document.getElementById("featuredGrid");
     const productGrid = document.getElementById("productGrid");
     const categoryFilter = document.getElementById("categoryFilter");
+    const typeFilter = document.getElementById("typeFilter");
     const sortFilter = document.getElementById("sortFilter");
     const searchInput = document.getElementById("searchInput");
     const toggleSearchBtn = document.getElementById("toggleSearchBtn");
@@ -1211,6 +1452,7 @@
           ${makeImageHTML(product, "product")}
           <div class="product-body">
             <div class="product-meta">${product.category}</div>
+            ${product.type ? `<span class="product-type-label">${product.type}</span>` : ""}
             <h3 class="product-title">${product.name}</h3>
             <p class="product-desc">${product.description}</p>
             <div class="product-details">${detailsHTML}</div>
@@ -1241,16 +1483,21 @@
     function getFilteredProducts() {
       const search = searchInput.value.trim().toLowerCase();
       const category = categoryFilter.value;
+      const type = typeFilter ? typeFilter.value : "all";
       const sort = sortFilter.value;
 
       let filtered = products.filter(product => {
         const matchesSearch =
           product.name.toLowerCase().includes(search) ||
           product.description.toLowerCase().includes(search) ||
-          product.category.toLowerCase().includes(search);
+          product.category.toLowerCase().includes(search) ||
+          (product.type || "").toLowerCase().includes(search) ||
+          (product.badge || "").toLowerCase().includes(search) ||
+          (product.details || []).join(" ").toLowerCase().includes(search);
 
         const matchesCategory = category === "all" || product.category === category;
-        return matchesSearch && matchesCategory;
+        const matchesType = type === "all" || product.type === type;
+        return matchesSearch && matchesCategory && matchesType;
       });
 
       if (sort === "price-asc") filtered.sort((a, b) => a.price - b.price);
@@ -1309,7 +1556,7 @@
 
       renderGallery(product);
 
-      modalMeta.textContent = `${product.category} · ${product.badge}`;
+      modalMeta.textContent = `${product.category}${product.type ? " · " + product.type : ""} · ${product.badge}`;
       modalTitle.textContent = product.name;
       modalPrice.textContent = formatPrice(product.price);
       modalDesc.textContent = product.description;
@@ -1459,6 +1706,48 @@
       });
     });
 
+
+    document.querySelectorAll("[data-type-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        const value = link.getAttribute("data-type-link");
+        if (typeFilter) typeFilter.value = value;
+        categoryFilter.value = "all";
+        renderProducts();
+      });
+    });
+
+    document.querySelectorAll("[data-collection]").forEach(button => {
+      button.addEventListener("click", () => {
+        const collection = button.getAttribute("data-collection");
+        searchInput.value = "";
+        categoryFilter.value = "all";
+        if (typeFilter) typeFilter.value = "all";
+        sortFilter.value = "default";
+
+        let list = [...products];
+
+        if (collection === "new") {
+          list = products.filter(product => ["NEW", "NEW DROP", "DROP", "Streetwear", "TREND 2026"].includes(product.badge));
+        }
+
+        if (collection === "best") {
+          list = products.filter(product => [8, 9, 10, 12, 13, 19].includes(product.id));
+        }
+
+        if (collection === "limited") {
+          list = products.filter(product => ["LIMITED", "HYPE", "TOP COLLAB", "ART DESIGN"].includes(product.badge));
+        }
+
+        if (collection === "under3000") {
+          list = products.filter(product => product.price <= 3000);
+        }
+
+        productGrid.innerHTML = list.map(makeProductCard).join("");
+        document.getElementById("catalog").scrollIntoView({ behavior: "smooth" });
+        applyReveal();
+      });
+    });
+
     toggleSearchBtn.addEventListener("click", () => {
       searchPanel.classList.toggle("show");
       if (searchPanel.classList.contains("show")) {
@@ -1483,6 +1772,7 @@
 
     searchInput.addEventListener("input", renderProducts);
     categoryFilter.addEventListener("change", renderProducts);
+    if (typeFilter) typeFilter.addEventListener("change", renderProducts);
     sortFilter.addEventListener("change", renderProducts);
 
     modalAddToCartBtn.addEventListener("click", addConfiguredProductToCart);
